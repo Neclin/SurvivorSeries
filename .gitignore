@@ -1,0 +1,24 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+.vsconfig
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.pidb
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
