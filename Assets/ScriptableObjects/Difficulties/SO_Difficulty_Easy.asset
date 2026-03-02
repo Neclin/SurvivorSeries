@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5a66a3c9a56d64989c0f1c79e73a06, type: 3}
+  m_Name: SO_Difficulty_Easy
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Waves.Data.DifficultySettingsSO
+  DifficultyName: Easy
+  HPScalingExponent: 1.1
+  DamageScalingExponent: 1
+  DurationScalingMultiplier: 0.1
+  EnemyCountScalingMultiplier: 0.15
+  CurrencyDropMultiplier: 1.2
+  XPDropMultiplier: 1.2
+  BossHPMultiplier: 0.75

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bfd17a165aace41b4abe42b74eb962, type: 3}
+  m_Name: SO_Weapon_Garlic
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
+  WeaponName: Garlic
+  Icon: {fileID: 0}
+  Type: 2
+  WeaponPrefab: {fileID: 3743632334697578713, guid: 40e9b0a9dff794043a804728b496d170, type: 3}
+  ProjectilePrefab: {fileID: 0}
+  BaseDamagePerLevel:
+  - 8
+  - 10
+  - 12
+  - 15
+  - 18
+  - 22
+  - 27
+  - 33
+  CooldownPerLevel:
+  - 1.5
+  - 1.4
+  - 1.3
+  - 1.2
+  - 1.1
+  - 1
+  - 0.9
+  - 0.8
+  AreaPerLevel:
+  - 1
+  - 1.1
+  - 1.2
+  - 1.3
+  - 1.4
+  - 1.5
+  - 1.6
+  - 1.8
+  ProjectileCountPerLevel: 0100000001000000010000000100000001000000010000000100000001000000
+  MaxLevel: 8
+  EvolutionRequirement: {fileID: 0}
+  EvolvedForm: {fileID: 0}
+  ShopPurchaseCost: 80

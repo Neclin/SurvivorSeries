@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bfd17a165aace41b4abe42b74eb962, type: 3}
+  m_Name: SO_Weapon_Cross
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
+  WeaponName: Cross
+  Icon: {fileID: 0}
+  Type: 3
+  WeaponPrefab: {fileID: 912424708994919089, guid: c25f9ca6f4a19e64ca0aa5a9a9479af7, type: 3}
+  ProjectilePrefab: {fileID: 4326029974552293998, guid: ed19655e79a4159409b485cbb6cf281e, type: 3}
+  BaseDamagePerLevel:
+  - 13
+  - 16
+  - 20
+  - 25
+  - 31
+  - 38
+  - 46
+  - 57
+  CooldownPerLevel:
+  - 1.1
+  - 1
+  - 0.95
+  - 0.9
+  - 0.85
+  - 0.8
+  - 0.75
+  - 0.7
+  AreaPerLevel:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  ProjectileCountPerLevel: 0100000001000000010000000100000002000000020000000200000003000000
+  MaxLevel: 8
+  EvolutionRequirement: {fileID: 0}
+  EvolvedForm: {fileID: 0}
+  ShopPurchaseCost: 100
