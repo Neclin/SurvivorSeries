@@ -49,7 +49,6 @@ namespace SurvivorSeries.Enemies
 
         protected abstract void UpdateBehavior();
 
-        // Called when this enemy's trigger collider overlaps the player
         protected void HandleContactWithPlayer(Collider other)
         {
             if (_contactDamageTimer > 0f) return;

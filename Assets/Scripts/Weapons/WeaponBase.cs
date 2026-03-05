@@ -13,8 +13,15 @@ namespace SurvivorSeries.Weapons
         protected int _level = 1;
         protected Player.PlayerStats _ownerStats;
         protected ProjectilePool _projectilePool;
+        protected Transform _displayModel;
+
+        public int SlotIndex { get; set; }
+        public int TotalSlots { get; set; } = 6;
 
         private CancellationTokenSource _cts;
+        private const float OrbitRadius = 1.4f;
+        private const float OrbitHeight = 0.45f;
+        private const float DisplayTurnSpeed = 540f;
 
         public Data.WeaponDataSO Data => _data;
         public bool IsEvolved => _evolvedData != null;
@@ -27,11 +34,10 @@ namespace SurvivorSeries.Weapons
             _ownerStats = stats;
             _level = 1;
 
-            // Create a projectile pool if this weapon uses projectiles
             if (data != null && data.ProjectilePrefab != null)
             {
                 var poolGO = new GameObject($"{data.WeaponName}_Pool");
-                poolGO.transform.SetParent(transform);
+                poolGO.transform.SetParent(transform, false);
                 _projectilePool = poolGO.AddComponent<ProjectilePool>();
 
                 var projPrefab = data.ProjectilePrefab.GetComponent<Projectile>();
@@ -39,31 +45,68 @@ namespace SurvivorSeries.Weapons
                     _projectilePool.Initialize(projPrefab, 20);
             }
 
-            // Start fire loop here, after data is set
+            CreateDisplayModel();
+
             _cts = new CancellationTokenSource();
             _ = FireLoop(_cts.Token);
         }
 
-        /// <summary>
-        /// Initializes this weapon from an evolved weapon definition (fixed single-level stats).
-        /// Reads directly from EvolvedWeaponDataSO fields; _data remains null.
-        /// </summary>
         public void InitializeEvolved(Data.EvolvedWeaponDataSO evolved, Player.PlayerStats stats)
         {
             _data = null;
             _evolvedData = evolved;
             _ownerStats = stats;
-            _level = 8; // Max level by default
+            _level = 8;
 
-            // Start fire loop
             _cts = new CancellationTokenSource();
             _ = FireLoop(_cts.Token);
         }
 
+        private void CreateDisplayModel()
+        {
+            if (_data == null || _data.DisplayPrefab == null)
+            {
+                Debug.Log($"[Weapon] {(_data != null ? _data.WeaponName : "<null>")}: no DisplayPrefab assigned.");
+                return;
+            }
+            var go = Instantiate(_data.DisplayPrefab, transform);
+            go.name = "Display";
+            _displayModel = go.transform;
+            Debug.Log($"[Weapon] {_data.WeaponName} slot={SlotIndex} Display spawned (prefab={_data.DisplayPrefab.name}).");
+        }
+
+        protected virtual void Update()
+        {
+            if (_displayModel == null) return;
+
+            float angleDeg = TotalSlots > 0 ? (360f * SlotIndex / TotalSlots) : 0f;
+            float angleRad = angleDeg * Mathf.Deg2Rad;
+            Vector3 localOffset = new Vector3(Mathf.Sin(angleRad) * OrbitRadius,
+                                              OrbitHeight,
+                                              Mathf.Cos(angleRad) * OrbitRadius);
+            _displayModel.localPosition = localOffset;
+
+            var target = FindNearestEnemy();
+            Vector3 desired;
+            if (target != null)
+            {
+                desired = target.position - _displayModel.position;
+            }
+            else
+            {
+                desired = _displayModel.position - GetPlayerPosition();
+            }
+            desired.y = 0f;
+            if (desired.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(desired);
+                _displayModel.rotation = Quaternion.RotateTowards(
+                    _displayModel.rotation, targetRot, DisplayTurnSpeed * Time.deltaTime);
+            }
+        }
+
         protected virtual void OnEnable()
         {
-            // FireLoop is started by Initialize() instead, so the data is guaranteed
-            // to be set before the first Fire() call.
         }
 
         protected virtual void OnDisable()
@@ -83,7 +126,7 @@ namespace SurvivorSeries.Weapons
 
         public bool CanEvolve()
         {
-            if (_evolvedData != null) return false; // already evolved
+            if (_evolvedData != null) return false;
             if (!IsMaxLevel || _data == null || _data.EvolutionRequirement == null) return false;
             return ServiceLocator.TryGet<PassiveSlotManager>(out var pm)
                    && pm.HasMaxLevel(_data.EvolutionRequirement);
@@ -117,37 +160,39 @@ namespace SurvivorSeries.Weapons
             return _data.ProjectileCountPerLevel[idx];
         }
 
-        /// <summary>Returns the detection range from the owner's stats.</summary>
         protected float GetDetectionRange() => _ownerStats != null ? _ownerStats.DetectionRange : 15f;
 
-        /// <summary>Finds the nearest active enemy within the player's detection range.</summary>
+        protected Vector3 GetPlayerPosition()
+        {
+            if (_ownerStats != null) return _ownerStats.transform.position;
+            if (ServiceLocator.TryGet<Player.PlayerController>(out var pc)) return pc.transform.position;
+            return transform.position;
+        }
+
         protected Transform FindNearestEnemy()
         {
             float closestSq = float.MaxValue;
             Transform result = null;
             var seen = new HashSet<int>();
 
-            foreach (var col in Physics.OverlapSphere(transform.position, GetDetectionRange()))
+            Vector3 origin = GetPlayerPosition();
+            foreach (var col in Physics.OverlapSphere(origin, GetDetectionRange()))
             {
                 var eh = col.GetComponentInParent<Enemies.EnemyHealth>();
                 if (eh == null || eh.IsDead || !seen.Add(eh.EnemyId)) continue;
 
-                float dsq = (eh.transform.position - transform.position).sqrMagnitude;
+                float dsq = (eh.transform.position - origin).sqrMagnitude;
                 if (dsq < closestSq) { closestSq = dsq; result = eh.transform; }
             }
             return result;
         }
 
-        /// <summary>
-        /// Returns all living enemies whose colliders overlap a sphere of the given radius.
-        /// Uses EnemyId to deduplicate enemies that have multiple colliders.
-        /// </summary>
         protected List<Enemies.EnemyHealth> FindEnemiesInRange(float range)
         {
             var list = new List<Enemies.EnemyHealth>();
             var seen = new HashSet<int>();
 
-            foreach (var col in Physics.OverlapSphere(transform.position, range))
+            foreach (var col in Physics.OverlapSphere(GetPlayerPosition(), range))
             {
                 var eh = col.GetComponentInParent<Enemies.EnemyHealth>();
                 if (eh == null || eh.IsDead || !seen.Add(eh.EnemyId)) continue;
@@ -158,7 +203,6 @@ namespace SurvivorSeries.Weapons
 
         private async Awaitable FireLoop(CancellationToken ct)
         {
-            // Small initial delay so Initialize() runs first
             await Awaitable.NextFrameAsync(ct);
             while (!ct.IsCancellationRequested)
             {

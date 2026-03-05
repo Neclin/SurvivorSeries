@@ -66,7 +66,6 @@ namespace SurvivorSeries.Waves
             _waveTimer = duration;
             _waveActive = true;
 
-            // Pick a random enemy type from config weights
             var enemyData = PickEnemyType(waveNumber);
             if (enemyData != null && ServiceLocator.TryGet<EnemySpawner>(out var spawner))
             {
@@ -76,7 +75,7 @@ namespace SurvivorSeries.Waves
             }
 
             OnWaveStarted?.Invoke(_currentWave);
-            Debug.Log($"[WaveManager] Wave {_currentWave} started — {count} enemies over {duration:F0}s");
+            Debug.Log($"[WaveManager] Wave {_currentWave} started â€” {count} enemies over {duration:F0}s");
         }
 
         private void EndWave()

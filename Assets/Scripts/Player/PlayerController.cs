@@ -1,4 +1,5 @@
 using UnityEngine;
+using SurvivorSeries.Core;
 using SurvivorSeries.Input;
 using SurvivorSeries.Utilities;
 
@@ -11,7 +12,10 @@ namespace SurvivorSeries.Player
 
         private CharacterController _cc;
         private PlayerStats _stats;
+        private PlayerHealth _health;
         private InputReader _input;
+        private Animator _animator;
+        private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
         private Vector2 _moveInput;
         private Vector3 _velocity;
@@ -21,28 +25,42 @@ namespace SurvivorSeries.Player
         {
             _cc = GetComponent<CharacterController>();
             _stats = GetComponent<PlayerStats>();
+            _health = GetComponent<PlayerHealth>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
         private void Start()
         {
-            // Subscribe in Start() — guaranteed to run after all Awake() calls,
-            // so InputReader will already be registered in ServiceLocator.
             if (ServiceLocator.TryGet<InputReader>(out _input))
                 _input.OnMove += HandleMove;
             else
                 Debug.LogWarning("[PlayerController] InputReader not found in ServiceLocator.");
+
+            if (_health != null)
+                _health.OnDeath += HandleDeath;
         }
 
         private void OnDisable()
         {
             if (_input != null)
                 _input.OnMove -= HandleMove;
+
+            if (_health != null)
+                _health.OnDeath -= HandleDeath;
+        }
+
+        private void HandleDeath()
+        {
+            if (ServiceLocator.TryGet<GameManager>(out var gm))
+                gm.OnPlayerDied();
         }
 
         private void Update()
         {
             Move();
             ApplyGravity();
+            if (_animator != null)
+                _animator.SetFloat(SpeedHash, _moveInput.magnitude);
         }
 
         private void HandleMove(Vector2 input) => _moveInput = input;
@@ -56,7 +74,6 @@ namespace SurvivorSeries.Player
 
             _cc.Move(direction * speed * Time.deltaTime);
 
-            // Rotate player to face movement direction
             Quaternion targetRot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot,
                                                            _rotationSpeed * Time.deltaTime);

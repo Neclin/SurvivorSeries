@@ -3,10 +3,6 @@ using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Persistence
 {
-    /// <summary>
-    /// Loads save data on startup and provides runtime unlock checks.
-    /// Lives in the Bootstrap scene.
-    /// </summary>
     public class UnlockRegistry : MonoBehaviour
     {
         private SaveData _data;

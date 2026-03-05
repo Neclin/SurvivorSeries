@@ -22,24 +22,22 @@ namespace SurvivorSeries.Player
     {
         public StatType Stat;
         public float FlatBonus;
-        public float PercentBonus; // additive percent, e.g. 0.1 = +10%
+        public float PercentBonus;
     }
 
     public class PlayerStats : MonoBehaviour
     {
-        // Base values — set from CharacterDefinitionSO on run start
         [SerializeField] private float _baseMaxHealth = 100f;
         [SerializeField] private float _baseMoveSpeed = 5f;
         [SerializeField] private float _baseDamage = 10f;
         [SerializeField] private float _baseArea = 1f;
         [SerializeField] private float _baseProjectileSpeed = 8f;
-        [SerializeField] private float _baseCooldownReduction = 0f; // 0 = no reduction
+        [SerializeField] private float _baseCooldownReduction = 0f;
         [SerializeField] private float _baseLuck = 1f;
         [SerializeField] private float _baseRegen = 0f;
         [SerializeField] private float _baseArmor = 0f;
         [SerializeField] private float _baseDetectionRange = 15f;
 
-        // Accumulated modifiers (from passives, level-ups, shop)
         private float _flatMaxHealth, _percentMaxHealth;
         private float _flatMoveSpeed, _percentMoveSpeed;
         private float _flatDamage, _percentDamage;
@@ -52,9 +50,7 @@ namespace SurvivorSeries.Player
 
         public event Action OnStatsChanged;
 
-        // --- Computed properties ---
-
-        public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxHealth);
+public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxHealth);
         public float MoveSpeed => (_baseMoveSpeed + _flatMoveSpeed) * (1f + _percentMoveSpeed);
         public float Damage => (_baseDamage + _flatDamage) * (1f + _percentDamage);
         public float Area => (_baseArea + _flatArea) * (1f + _percentArea);

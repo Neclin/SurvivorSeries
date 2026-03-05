@@ -13,7 +13,7 @@ namespace SurvivorSeries.Enemies.Data
         public float BaseHealth = 20f;
         public float BaseDamage = 5f;
         public float MoveSpeed = 3f;
-        public float ContactDamageInterval = 0.5f; // seconds between contact damage ticks
+        public float ContactDamageInterval = 0.5f;
 
         [Header("Drops")]
         public float XPDropAmount = 5f;

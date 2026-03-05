@@ -11,8 +11,13 @@ namespace SurvivorSeries.UI.HUD
         [SerializeField] private TextMeshProUGUI _xpText;
         [SerializeField] private Image _xpFill;
         [SerializeField] private TextMeshProUGUI _waveText;
+        [SerializeField] private TextMeshProUGUI _waveTimerText;
         [SerializeField] private TextMeshProUGUI _currencyText;
         [SerializeField] private TextMeshProUGUI _levelUpNotification;
+        [SerializeField] private Image _healthFill;
+        [SerializeField] private TextMeshProUGUI _healthText;
+
+        private Waves.WaveManager _waveMgr;
 
         private void Start()
         {
@@ -24,10 +29,10 @@ namespace SurvivorSeries.UI.HUD
                 UpdateXP(levelSys.CurrentXP, levelSys.XPToNextLevel);
             }
 
-            if (ServiceLocator.TryGet<Waves.WaveManager>(out var waveMgr))
+            if (ServiceLocator.TryGet(out _waveMgr))
             {
-                waveMgr.OnWaveStarted += OnWaveStarted;
-                UpdateWave(waveMgr.CurrentWave);
+                _waveMgr.OnWaveStarted += OnWaveStarted;
+                UpdateWave(_waveMgr.CurrentWave);
             }
 
             if (ServiceLocator.TryGet<Player.PlayerCurrencyHandler>(out var currency))
@@ -36,8 +41,30 @@ namespace SurvivorSeries.UI.HUD
                 UpdateCurrency(currency.Currency);
             }
 
+            if (ServiceLocator.TryGet<Player.PlayerHealth>(out var health))
+            {
+                health.OnHealthChanged += UpdateHealth;
+                UpdateHealth(health.CurrentHealth, health.MaxHealth);
+            }
+
             if (_levelUpNotification != null)
                 _levelUpNotification.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (_waveTimerText == null || _waveMgr == null) return;
+            if (_waveMgr.IsWaveActive)
+            {
+                float t = _waveMgr.WaveTimeRemaining;
+                int mm = Mathf.FloorToInt(t / 60f);
+                int ss = Mathf.FloorToInt(t % 60f);
+                _waveTimerText.text = $"{mm:00}:{ss:00}";
+            }
+            else
+            {
+                _waveTimerText.text = "--:--";
+            }
         }
 
         private void OnLevelUp(int level)
@@ -70,6 +97,14 @@ namespace SurvivorSeries.UI.HUD
         private void UpdateCurrency(int amount)
         {
             if (_currencyText != null) _currencyText.text = $"{amount}g";
+        }
+
+        private void UpdateHealth(float current, float max)
+        {
+            if (_healthFill != null)
+                _healthFill.fillAmount = max > 0f ? current / max : 0f;
+            if (_healthText != null)
+                _healthText.text = $"{Mathf.CeilToInt(current)} / {Mathf.CeilToInt(max)}";
         }
 
         private async Awaitable ShowLevelUpNotification()

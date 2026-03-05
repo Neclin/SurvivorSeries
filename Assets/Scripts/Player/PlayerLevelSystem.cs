@@ -15,8 +15,8 @@ namespace SurvivorSeries.Player
         public float XPToNextLevel => _xpToNextLevel;
         public float XPProgress => _xpToNextLevel > 0f ? _currentXP / _xpToNextLevel : 0f;
 
-        public event Action<int> OnLevelUp;           // new level number
-        public event Action<float, float> OnXPChanged; // (current, required)
+        public event Action<int> OnLevelUp;
+        public event Action<float, float> OnXPChanged;
 
         private void Awake()
         {

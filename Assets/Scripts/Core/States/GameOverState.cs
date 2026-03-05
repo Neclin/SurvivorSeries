@@ -6,6 +6,7 @@ namespace SurvivorSeries.Core.States
     {
         public override void Enter()
         {
+            Debug.Log("[State] GameOver");
             Time.timeScale = 0f;
         }
 

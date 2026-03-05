@@ -15,6 +15,7 @@ namespace SurvivorSeries.Weapons.Data
         [Header("Prefabs")]
         public GameObject WeaponPrefab;
         public GameObject ProjectilePrefab;
+        public GameObject DisplayPrefab;
 
         [Header("Levels (8 entries each)")]
         public float[] BaseDamagePerLevel = new float[8];

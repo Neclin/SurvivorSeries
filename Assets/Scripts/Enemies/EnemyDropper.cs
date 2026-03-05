@@ -9,7 +9,6 @@ namespace SurvivorSeries.Enemies
     {
         public void SpawnDrops(Vector3 position, EnemyDataSO data)
         {
-            // Single orb pickup — always drops, grants both currency and XP
             if (ServiceLocator.TryGet<CurrencyDropPool>(out var pool))
                 pool.Spawn(position + Vector3.up * 0.2f, data.CurrencyDropAmount);
         }

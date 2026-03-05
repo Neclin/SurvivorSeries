@@ -21,7 +21,6 @@ namespace SurvivorSeries.Weapons.Evolution
 
         public IReadOnlyList<EvolutionRecipe> Recipes => _recipes;
 
-        /// <summary>Returns the evolved weapon data if the weapon+passive combo has a recipe, or null.</summary>
         public Data.EvolvedWeaponDataSO TryGetEvolution(Data.WeaponDataSO weapon, Passives.Data.PassiveItemDataSO passive)
         {
             foreach (var recipe in _recipes)
@@ -32,10 +31,6 @@ namespace SurvivorSeries.Weapons.Evolution
             return null;
         }
 
-        /// <summary>
-        /// Checks all equipped weapons for evolution eligibility and applies any
-        /// available evolutions. Call this after each passive level-up.
-        /// </summary>
         public void CheckAndApplyEvolutions()
         {
             if (!ServiceLocator.TryGet<WeaponSlotManager>(out var wsm)) return;
@@ -46,14 +41,13 @@ namespace SurvivorSeries.Weapons.Evolution
                 if (weapon == null) continue;
                 if (!weapon.CanEvolve()) continue;
 
-                // Find which passive triggers the evolution for this weapon
                 foreach (var recipe in _recipes)
                 {
                     if (recipe.Base != weapon.Data) continue;
                     if (!psm.HasMaxLevel(recipe.Passive)) continue;
 
                     wsm.ApplyEvolution(weapon, recipe.Result);
-                    break; // Only one evolution per weapon
+                    break;
                 }
             }
         }

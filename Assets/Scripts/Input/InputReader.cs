@@ -5,17 +5,12 @@ using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Input
 {
-    /// <summary>
-    /// Wraps the generated InputSystem_Actions class and exposes C# events.
-    /// All other systems subscribe to these events — no direct InputSystem calls elsewhere.
-    /// </summary>
     public class InputReader : MonoBehaviour,
         InputSystem_Actions.IPlayerActions,
         InputSystem_Actions.IUIActions
     {
         private InputSystem_Actions _actions;
 
-        // Player events
         public event Action<Vector2> OnMove;
         public event Action<Vector2> OnLook;
         public event Action OnAttackStarted;
@@ -26,7 +21,6 @@ namespace SurvivorSeries.Input
         public event Action OnPreviousPressed;
         public event Action OnNextPressed;
 
-        // UI events
         public event Action OnUISubmit;
         public event Action OnUICancel;
 
@@ -56,9 +50,7 @@ namespace SurvivorSeries.Input
 
         public void DisableAll() => _actions.Disable();
 
-        // ─── IPlayerActions ───────────────────────────────────────────────
-
-        void InputSystem_Actions.IPlayerActions.OnMove(InputAction.CallbackContext ctx)
+void InputSystem_Actions.IPlayerActions.OnMove(InputAction.CallbackContext ctx)
             => OnMove?.Invoke(ctx.ReadValue<Vector2>());
 
         void InputSystem_Actions.IPlayerActions.OnLook(InputAction.CallbackContext ctx)
@@ -90,9 +82,7 @@ namespace SurvivorSeries.Input
             if (ctx.started) OnNextPressed?.Invoke();
         }
 
-        // ─── IUIActions ───────────────────────────────────────────────────
-
-        void InputSystem_Actions.IUIActions.OnNavigate(InputAction.CallbackContext ctx) { }
+void InputSystem_Actions.IUIActions.OnNavigate(InputAction.CallbackContext ctx) { }
 
         void InputSystem_Actions.IUIActions.OnSubmit(InputAction.CallbackContext ctx)
         {

@@ -17,7 +17,7 @@ namespace SurvivorSeries.Player
         public float MaxHealth => _stats != null ? _stats.MaxHealth : 100f;
         public bool IsDead => _currentHealth <= 0f;
 
-        public event Action<float, float> OnHealthChanged; // (current, max)
+        public event Action<float, float> OnHealthChanged;
         public event Action OnDeath;
 
         private void Awake()

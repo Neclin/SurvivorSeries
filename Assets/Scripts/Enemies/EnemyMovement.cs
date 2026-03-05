@@ -8,8 +8,14 @@ namespace SurvivorSeries.Enemies
     {
         private NavMeshAgent _agent;
         private Transform _target;
+        private Animator _animator;
+        private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
-        private void Awake() => _agent = GetComponent<NavMeshAgent>();
+        private void Awake()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponentInChildren<Animator>();
+        }
 
         public void Initialize(float speed)
         {
@@ -32,7 +38,6 @@ namespace SurvivorSeries.Enemies
         private bool _useOverride;
         private Vector3 _overrideDestination;
 
-        /// <summary>Overrides target-following with a specific world position for this frame (and subsequent frames until cleared).</summary>
         public void SetDestinationOverride(Vector3 worldPos)
         {
             _useOverride = true;
@@ -49,6 +54,8 @@ namespace SurvivorSeries.Enemies
         {
             if (_target == null || !_agent.isOnNavMesh) return;
             _agent.SetDestination(_useOverride ? _overrideDestination : _target.position);
+            if (_animator != null)
+                _animator.SetFloat(SpeedHash, _agent.velocity.magnitude);
         }
 
         public void SetSpeed(float speed)

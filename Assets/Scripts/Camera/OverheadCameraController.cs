@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace SurvivorSeries.Camera
 {
-    /// <summary>
-    /// Smooth overhead follow camera with configurable height and pitch angle.
-    /// Attach to a Camera rig (empty parent GameObject); the Camera sits as a child.
-    /// </summary>
     public class OverheadCameraController : MonoBehaviour
     {
         [SerializeField] private Transform _target;
@@ -27,7 +23,7 @@ namespace SurvivorSeries.Camera
             transform.position = Vector3.SmoothDamp(transform.position, desiredPosition,
                                                     ref _velocity, 1f / _smoothSpeed);
 
-            transform.LookAt(_target.position);
+            transform.rotation = Quaternion.Euler(_pitchAngle, 0f, 0f);
         }
 
         public void SetTarget(Transform target) => _target = target;

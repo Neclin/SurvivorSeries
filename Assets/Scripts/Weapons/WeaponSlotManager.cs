@@ -10,10 +10,6 @@ namespace SurvivorSeries.Weapons
         private readonly WeaponBase[] _slots = new WeaponBase[MaxSlots];
         private Player.PlayerStats _stats;
 
-        /// <summary>
-        /// Destroys the given weapon's GameObject, instantiates the evolved weapon prefab
-        /// in its place, and wires it up to the same slot index.
-        /// </summary>
         public void ApplyEvolution(WeaponBase weapon, EvolvedWeaponDataSO evolved)
         {
             if (weapon == null || evolved == null) return;
@@ -34,12 +30,12 @@ namespace SurvivorSeries.Weapons
                 return;
             }
 
-            // Destroy old weapon GameObject
             Destroy(weapon.gameObject);
             _slots[slotIndex] = null;
 
-            // Instantiate evolved weapon
             GameObject go = Instantiate(evolved.WeaponPrefab, transform);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
             WeaponBase newWeapon = go.GetComponent<WeaponBase>();
             if (newWeapon == null)
             {
@@ -48,6 +44,8 @@ namespace SurvivorSeries.Weapons
                 return;
             }
 
+            newWeapon.SlotIndex = slotIndex;
+            newWeapon.TotalSlots = MaxSlots;
             newWeapon.InitializeEvolved(evolved, _stats);
             _slots[slotIndex] = newWeapon;
             Debug.Log($"[WeaponSlotManager] Evolved weapon applied: {evolved.WeaponName}");
@@ -63,14 +61,12 @@ namespace SurvivorSeries.Weapons
 
         public bool TryAddWeapon(WeaponDataSO data)
         {
-            // If already has this weapon, level it up instead
             for (int i = 0; i < MaxSlots; i++)
             {
                 if (_slots[i] != null && _slots[i].Data == data)
                     return TryLevelUpWeapon(data);
             }
 
-            // Find empty slot
             for (int i = 0; i < MaxSlots; i++)
             {
                 if (_slots[i] != null) continue;
@@ -82,6 +78,8 @@ namespace SurvivorSeries.Weapons
                 }
 
                 GameObject go = Instantiate(data.WeaponPrefab, transform);
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localRotation = Quaternion.identity;
                 WeaponBase weapon = go.GetComponent<WeaponBase>();
                 if (weapon == null)
                 {
@@ -90,12 +88,14 @@ namespace SurvivorSeries.Weapons
                     return false;
                 }
 
+                weapon.SlotIndex = i;
+                weapon.TotalSlots = MaxSlots;
                 weapon.Initialize(data, _stats);
                 _slots[i] = weapon;
                 return true;
             }
 
-            return false; // all slots full
+            return false;
         }
 
         public bool TryLevelUpWeapon(WeaponDataSO data)

@@ -23,10 +23,6 @@ namespace SurvivorSeries.LevelUp
             ServiceLocator.Unregister<UpgradeOptionGenerator>();
         }
 
-        /// <summary>
-        /// Generates upgrade options weighted by type, filtered against current slot states.
-        /// Higher luckMultiplier re-rolls duplicate picks once, favouring higher-weight options.
-        /// </summary>
         public List<UpgradeOption> GenerateOptions(int count, float luckMultiplier)
         {
             bool hasWeaponSlot = ServiceLocator.TryGet<WeaponSlotManager>(out var wsm);
@@ -34,7 +30,6 @@ namespace SurvivorSeries.LevelUp
 
             var pool = new List<(UpgradeOption option, int weight)>();
 
-            // ── Weapon options ────────────────────────────────────────────────
             if (hasWeaponSlot)
             {
                 bool weaponSlotFree = false;
@@ -49,7 +44,6 @@ namespace SurvivorSeries.LevelUp
 
                     if (wsm.HasWeapon(weapon))
                     {
-                        // Level-up option for owned, non-max weapons (weight 3)
                         bool isMax = false;
                         foreach (var w in wsm.GetAllWeapons())
                         {
@@ -68,7 +62,6 @@ namespace SurvivorSeries.LevelUp
                     }
                     else if (weaponSlotFree)
                     {
-                        // New weapon for empty slots (weight 2)
                         pool.Add((new UpgradeOption
                         {
                             Name = weapon.WeaponName,
@@ -80,7 +73,6 @@ namespace SurvivorSeries.LevelUp
                 }
             }
 
-            // ── Passive options ───────────────────────────────────────────────
             if (hasPassiveSlot)
             {
                 bool passiveSlotFree = psm.HasFreeSlot();
@@ -92,7 +84,6 @@ namespace SurvivorSeries.LevelUp
 
                     if (psm.HasPassive(passive))
                     {
-                        // Level-up option for owned, non-max passives (weight 3)
                         pool.Add((new UpgradeOption
                         {
                             Name = $"{passive.ItemName} (Level Up)",
@@ -103,7 +94,6 @@ namespace SurvivorSeries.LevelUp
                     }
                     else if (passiveSlotFree)
                     {
-                        // New passive for empty slots (weight 2)
                         pool.Add((new UpgradeOption
                         {
                             Name = passive.ItemName,
@@ -117,7 +107,6 @@ namespace SurvivorSeries.LevelUp
 
             if (pool.Count == 0) return new List<UpgradeOption>();
 
-            // If pool has fewer options than requested, return all available
             if (pool.Count <= count)
             {
                 var all = new List<UpgradeOption>(pool.Count);
@@ -125,7 +114,6 @@ namespace SurvivorSeries.LevelUp
                 return all;
             }
 
-            // Weighted random selection without replacement
             var result = new List<UpgradeOption>(count);
             var remaining = new List<(UpgradeOption option, int weight)>(pool);
             bool useLuckReroll = luckMultiplier > 1f;
@@ -140,7 +128,6 @@ namespace SurvivorSeries.LevelUp
 
                 if (useLuckReroll)
                 {
-                    // Re-roll once and take the higher-weight result
                     int roll2 = Random.Range(0, totalWeight);
                     int pickedIndex2 = PickWeightedIndex(remaining, roll2);
                     if (remaining[pickedIndex2].weight > remaining[pickedIndex].weight)

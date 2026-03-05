@@ -5,7 +5,6 @@ using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Passives
 {
-    /// <summary>Manages up to 6 passive item slots. Phase 3 will flesh this out fully.</summary>
     public class PassiveSlotManager : MonoBehaviour
     {
         private const int MaxSlots = 6;

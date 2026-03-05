@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace SurvivorSeries.Pickups
 {
-    /// <summary>
-    /// Single pickup type. Grants both currency and XP when collected.
-    /// Magnetizes toward the player when within range.
-    /// </summary>
     public class CurrencyDrop : MonoBehaviour
     {
         [SerializeField] private float _magnetRadius = 5f;

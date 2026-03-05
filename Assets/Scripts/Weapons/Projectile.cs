@@ -19,7 +19,6 @@ namespace SurvivorSeries.Weapons
             _rb = GetComponent<Rigidbody>();
             _rb.useGravity = false;
             _rb.isKinematic = false;
-            // None avoids the one-frame ghost render caused by interpolation when teleporting
             _rb.interpolation = RigidbodyInterpolation.None;
             _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
@@ -27,7 +26,6 @@ namespace SurvivorSeries.Weapons
             if (col != null) col.isTrigger = true;
         }
 
-        /// <param name="spawnPosition">World-space position the projectile should start from.</param>
         public void Initialize(Vector3 spawnPosition, Vector3 direction, float damage, float speed,
                                float lifetime, ProjectilePool pool,
                                bool useGravity = false, bool pierce = false)
@@ -44,22 +42,27 @@ namespace SurvivorSeries.Weapons
                 _hitEnemyIds.Clear();
             }
 
-            // Detach first so the position is in world space
             transform.SetParent(null);
 
-            // Use rb.position so the physics engine is immediately in sync —
-            // setting transform.position on a non-kinematic Rigidbody lags one physics frame
+            Vector3 normalized = direction.sqrMagnitude > 0.0001f ? direction.normalized : Vector3.forward;
             _rb.position = spawnPosition;
-            _rb.rotation = Quaternion.identity;
+            _rb.rotation = Quaternion.LookRotation(normalized);
             _rb.useGravity = useGravity;
-            _rb.linearVelocity = direction.normalized * speed;
+            _rb.linearVelocity = normalized * speed;
         }
 
         private void Update()
         {
             _elapsed += Time.deltaTime;
             if (_elapsed >= _lifetime)
+            {
                 ReturnToPool();
+                return;
+            }
+
+            Vector3 velocity = _rb.linearVelocity;
+            if (velocity.sqrMagnitude > 0.01f)
+                _rb.rotation = Quaternion.LookRotation(velocity);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -69,17 +72,19 @@ namespace SurvivorSeries.Weapons
 
             if (_pierce)
             {
-                // Skip enemies already hit by this projectile
                 if (!_hitEnemyIds.Add(enemyHealth.EnemyId)) return;
                 enemyHealth.TakeDamage(_damage);
-                // Don't return to pool — continue through enemies until lifetime or Ground
+                OnHit(enemyHealth);
             }
             else
             {
                 enemyHealth.TakeDamage(_damage);
+                OnHit(enemyHealth);
                 ReturnToPool();
             }
         }
+
+        protected virtual void OnHit(Enemies.EnemyHealth enemy) { }
 
         private void ReturnToPool()
         {
@@ -90,7 +95,6 @@ namespace SurvivorSeries.Weapons
             if (_pool != null)
             {
                 transform.SetParent(_pool.transform);
-                // Reset local position to zero so it doesn't ghost-collide on next activation
                 transform.localPosition = Vector3.zero;
                 _pool.Return(this);
             }

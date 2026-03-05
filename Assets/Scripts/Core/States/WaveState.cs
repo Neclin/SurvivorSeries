@@ -1,3 +1,4 @@
+using UnityEngine;
 using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Core.States
@@ -6,6 +7,7 @@ namespace SurvivorSeries.Core.States
     {
         public override void Enter()
         {
+            Debug.Log("[State] Wave");
             if (ServiceLocator.TryGet<Waves.WaveManager>(out var wm) && !wm.IsWaveActive)
                 wm.StartNextWave();
         }

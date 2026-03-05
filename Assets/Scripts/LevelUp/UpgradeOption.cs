@@ -20,10 +20,6 @@ namespace SurvivorSeries.LevelUp
         public Weapons.Data.WeaponDataSO WeaponData;
         public Passives.Data.PassiveItemDataSO PassiveData;
 
-        /// <summary>
-        /// Applies this upgrade option via the ServiceLocator.
-        /// Handles weapon add/level-up and passive add/level-up.
-        /// </summary>
         public void Apply()
         {
             switch (Type)

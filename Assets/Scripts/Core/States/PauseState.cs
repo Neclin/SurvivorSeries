@@ -6,6 +6,7 @@ namespace SurvivorSeries.Core.States
     {
         public override void Enter()
         {
+            Debug.Log("[State] Pause");
             Time.timeScale = 0f;
         }
 

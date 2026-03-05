@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 namespace SurvivorSeries.Utilities
 {
-    /// <summary>
-    /// Global service registry. Managers register themselves in Awake;
-    /// consumers call Get<T>() instead of FindObjectOfType or static singletons.
-    /// </summary>
     public static class ServiceLocator
     {
         private static readonly Dictionary<Type, object> _services = new();
@@ -41,7 +37,6 @@ namespace SurvivorSeries.Utilities
             _services.Remove(typeof(T));
         }
 
-        /// <summary>Called during tests or scene reloads to clear state.</summary>
         public static void Clear()
         {
             _services.Clear();
