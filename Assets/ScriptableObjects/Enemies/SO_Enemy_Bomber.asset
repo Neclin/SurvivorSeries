@@ -15,9 +15,9 @@ MonoBehaviour:
   EnemyName: Bomber
   Prefab: {fileID: 0}
   BaseHealth: 12
-  BaseDamage: 25
-  MoveSpeed: 3
+  BaseDamage: 18
+  MoveSpeed: 3.2
   ContactDamageInterval: 99
-  XPDropAmount: 5
+  XPDropAmount: 8
   CurrencyDropAmount: 8
   CurrencyDropChance: 1

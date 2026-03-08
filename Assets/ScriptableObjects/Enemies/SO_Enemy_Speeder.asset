@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Speeder
   Prefab: {fileID: 0}
-  BaseHealth: 8
-  BaseDamage: 3
-  MoveSpeed: 6
+  BaseHealth: 10
+  BaseDamage: 6
+  MoveSpeed: 5.5
   ContactDamageInterval: 0.4
-  XPDropAmount: 5
+  XPDropAmount: 4
   CurrencyDropAmount: 4
   CurrencyDropChance: 1

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Elite
   Prefab: {fileID: 0}
-  BaseHealth: 100
-  BaseDamage: 25
-  MoveSpeed: 3
+  BaseHealth: 90
+  BaseDamage: 16
+  MoveSpeed: 2.6
   ContactDamageInterval: 0.5
-  XPDropAmount: 5
+  XPDropAmount: 18
   CurrencyDropAmount: 50
   CurrencyDropChance: 1

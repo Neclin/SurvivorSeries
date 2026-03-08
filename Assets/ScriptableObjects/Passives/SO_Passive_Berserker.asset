@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9342fd91028781e43ab59ca25434a8f1, type: 3}
-  m_Name: SO_Passive_Wings
+  m_Name: SO_Passive_Berserker
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Passives.Data.PassiveItemDataSO
-  ItemName: Wings
+  ItemName: Berserker's Rune
   Icon: {fileID: 0}
-  AffectedStat: 1
-  FlatBonusPerLevel: 0
-  PercentBonusPerLevel: 0.05
-  MaxLevel: 8
-  ShopPurchaseCost: 80
+  ModifiersPerLevel:
+  - Stat: 2
+    FlatBonus: 0
+    PercentBonus: 0.2
+  - Stat: 1
+    FlatBonus: 0
+    PercentBonus: -0.05
+  MaxLevel: 5
+  ShopPurchaseCost: 120

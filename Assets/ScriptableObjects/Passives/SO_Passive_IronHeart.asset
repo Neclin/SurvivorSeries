@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9342fd91028781e43ab59ca25434a8f1, type: 3}
-  m_Name: SO_Passive_Armor
+  m_Name: SO_Passive_IronHeart
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Passives.Data.PassiveItemDataSO
-  ItemName: Armor
+  ItemName: Iron Heart
   Icon: {fileID: 0}
-  AffectedStat: 8
-  FlatBonusPerLevel: 0.5
-  PercentBonusPerLevel: 0
-  MaxLevel: 8
-  ShopPurchaseCost: 80
+  ModifiersPerLevel:
+  - Stat: 0
+    FlatBonus: 15
+    PercentBonus: 0
+  MaxLevel: 5
+  ShopPurchaseCost: 100

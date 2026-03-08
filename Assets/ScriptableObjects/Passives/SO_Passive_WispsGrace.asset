@@ -10,12 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9342fd91028781e43ab59ca25434a8f1, type: 3}
-  m_Name: SO_Passive_Candelabrador
+  m_Name: SO_Passive_WispsGrace
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Passives.Data.PassiveItemDataSO
-  ItemName: Candelabrador
+  ItemName: Wisp's Grace
   Icon: {fileID: 0}
-  AffectedStat: 3
-  FlatBonusPerLevel: 0
-  PercentBonusPerLevel: 0.1
-  MaxLevel: 8
-  ShopPurchaseCost: 80
+  ModifiersPerLevel:
+  - Stat: 1
+    FlatBonus: 0
+    PercentBonus: 0.1
+  - Stat: 5
+    FlatBonus: 0.08
+    PercentBonus: 0
+  - Stat: 2
+    FlatBonus: 0
+    PercentBonus: -0.12
+  MaxLevel: 3
+  ShopPurchaseCost: 180

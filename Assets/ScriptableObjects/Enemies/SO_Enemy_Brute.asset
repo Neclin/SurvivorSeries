@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Brute
   Prefab: {fileID: 0}
-  BaseHealth: 80
-  BaseDamage: 10
-  MoveSpeed: 1.5
+  BaseHealth: 60
+  BaseDamage: 14
+  MoveSpeed: 1.8
   ContactDamageInterval: 1
-  XPDropAmount: 5
+  XPDropAmount: 12
   CurrencyDropAmount: 10
   CurrencyDropChance: 1

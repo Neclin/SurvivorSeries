@@ -53,6 +53,9 @@ namespace SurvivorSeries.LevelUp
             var options = generator.GenerateOptions(3, luck);
             OnOptionsReady?.Invoke(options);
 
+            bool hasUi = ServiceLocator.TryGet<UI.LevelUp.LevelUpUI>(out _);
+            if (hasUi) return;
+
             _cts?.Cancel();
             _cts?.Dispose();
             _cts = new CancellationTokenSource();

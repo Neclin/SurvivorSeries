@@ -61,12 +61,17 @@ namespace SurvivorSeries.Passives
         private void ApplyModifier(PassiveItemDataSO data, int levels)
         {
             if (!ServiceLocator.TryGet<PlayerStats>(out var stats)) return;
-            stats.ApplyModifier(new StatModifier
+            if (data.ModifiersPerLevel == null) return;
+            for (int m = 0; m < data.ModifiersPerLevel.Count; m++)
             {
-                Stat = data.AffectedStat,
-                FlatBonus = data.FlatBonusPerLevel * levels,
-                PercentBonus = data.PercentBonusPerLevel * levels
-            });
+                var src = data.ModifiersPerLevel[m];
+                stats.ApplyModifier(new StatModifier
+                {
+                    Stat = src.Stat,
+                    FlatBonus = src.FlatBonus * levels,
+                    PercentBonus = src.PercentBonus * levels
+                });
+            }
         }
     }
 }

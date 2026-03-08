@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Ranged
   Prefab: {fileID: 0}
-  BaseHealth: 15
-  BaseDamage: 4
+  BaseHealth: 14
+  BaseDamage: 7
   MoveSpeed: 2.5
   ContactDamageInterval: 1
-  XPDropAmount: 5
+  XPDropAmount: 6
   CurrencyDropAmount: 6
   CurrencyDropChance: 1

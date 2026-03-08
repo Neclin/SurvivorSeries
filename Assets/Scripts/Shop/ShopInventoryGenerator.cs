@@ -118,7 +118,7 @@ namespace SurvivorSeries.Shop
             {
                 Type = ShopItemType.PassiveNew,
                 Name = data.ItemName,
-                Description = $"Gain the {data.ItemName} passive item.",
+                Description = data.GetDescription(),
                 Cost = cost,
                 PassiveData = data
             };
@@ -136,7 +136,7 @@ namespace SurvivorSeries.Shop
             {
                 Type = ShopItemType.PassiveLevelUp,
                 Name = $"{data.ItemName} +1",
-                Description = $"Level up {data.ItemName}.",
+                Description = data.GetDescription(),
                 Cost = cost,
                 PassiveData = data
             };

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Walker
   Prefab: {fileID: 5312257912783488874, guid: 13c66e2184ec5ed41a4ac9849f94b6cb, type: 3}
-  BaseHealth: 20
-  BaseDamage: 5
+  BaseHealth: 16
+  BaseDamage: 8
   MoveSpeed: 3
   ContactDamageInterval: 0.5
   XPDropAmount: 5

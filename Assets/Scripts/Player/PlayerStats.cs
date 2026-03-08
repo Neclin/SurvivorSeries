@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using SurvivorSeries.Characters.Data;
 
@@ -27,9 +28,9 @@ namespace SurvivorSeries.Player
 
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] private float _baseMaxHealth = 100f;
+        [SerializeField] private float _baseMaxHealth = 60f;
         [SerializeField] private float _baseMoveSpeed = 5f;
-        [SerializeField] private float _baseDamage = 10f;
+        [SerializeField] private float _baseDamage = 8f;
         [SerializeField] private float _baseArea = 1f;
         [SerializeField] private float _baseProjectileSpeed = 8f;
         [SerializeField] private float _baseCooldownReduction = 0f;
@@ -48,9 +49,22 @@ namespace SurvivorSeries.Player
         private float _flatRegen, _percentRegen;
         private float _flatArmor, _percentArmor;
 
+        private readonly Dictionary<StatType, float> _growth = new()
+        {
+            { StatType.MaxHealth, 1f },
+            { StatType.MoveSpeed, 1f },
+            { StatType.Damage, 1f },
+            { StatType.Area, 1f },
+            { StatType.ProjectileSpeed, 1f },
+            { StatType.CooldownReduction, 1f },
+            { StatType.Luck, 1f },
+            { StatType.Regen, 1f },
+            { StatType.Armor, 1f },
+        };
+
         public event Action OnStatsChanged;
 
-public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxHealth);
+        public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxHealth);
         public float MoveSpeed => (_baseMoveSpeed + _flatMoveSpeed) * (1f + _percentMoveSpeed);
         public float Damage => (_baseDamage + _flatDamage) * (1f + _percentDamage);
         public float Area => (_baseArea + _flatArea) * (1f + _percentArea);
@@ -72,22 +86,37 @@ public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxH
             _baseLuck = def.BaseLuck;
             _baseRegen = 0f;
             _baseArmor = 0f;
+
+            _growth[StatType.MaxHealth] = def.HealthGrowth;
+            _growth[StatType.MoveSpeed] = def.MoveSpeedGrowth;
+            _growth[StatType.Damage] = def.DamageGrowth;
+            _growth[StatType.Area] = def.AreaGrowth;
+            _growth[StatType.ProjectileSpeed] = def.ProjectileSpeedGrowth;
+            _growth[StatType.CooldownReduction] = def.CooldownGrowth;
+            _growth[StatType.Luck] = def.LuckGrowth;
+            _growth[StatType.Regen] = def.RegenGrowth;
+            _growth[StatType.Armor] = def.ArmorGrowth;
+
             OnStatsChanged?.Invoke();
         }
 
         public void ApplyModifier(StatModifier mod)
         {
+            float g = _growth.TryGetValue(mod.Stat, out var v) ? v : 1f;
+            float flat = mod.FlatBonus * g;
+            float pct = mod.PercentBonus * g;
+
             switch (mod.Stat)
             {
-                case StatType.MaxHealth:       _flatMaxHealth += mod.FlatBonus; _percentMaxHealth += mod.PercentBonus; break;
-                case StatType.MoveSpeed:       _flatMoveSpeed += mod.FlatBonus; _percentMoveSpeed += mod.PercentBonus; break;
-                case StatType.Damage:          _flatDamage += mod.FlatBonus; _percentDamage += mod.PercentBonus; break;
-                case StatType.Area:            _flatArea += mod.FlatBonus; _percentArea += mod.PercentBonus; break;
-                case StatType.ProjectileSpeed: _flatProjectileSpeed += mod.FlatBonus; _percentProjectileSpeed += mod.PercentBonus; break;
-                case StatType.CooldownReduction: _flatCDR += mod.FlatBonus; _percentCDR += mod.PercentBonus; break;
-                case StatType.Luck:            _flatLuck += mod.FlatBonus; _percentLuck += mod.PercentBonus; break;
-                case StatType.Regen:           _flatRegen += mod.FlatBonus; _percentRegen += mod.PercentBonus; break;
-                case StatType.Armor:           _flatArmor += mod.FlatBonus; break;
+                case StatType.MaxHealth:       _flatMaxHealth += flat; _percentMaxHealth += pct; break;
+                case StatType.MoveSpeed:       _flatMoveSpeed += flat; _percentMoveSpeed += pct; break;
+                case StatType.Damage:          _flatDamage += flat; _percentDamage += pct; break;
+                case StatType.Area:            _flatArea += flat; _percentArea += pct; break;
+                case StatType.ProjectileSpeed: _flatProjectileSpeed += flat; _percentProjectileSpeed += pct; break;
+                case StatType.CooldownReduction: _flatCDR += flat; _percentCDR += pct; break;
+                case StatType.Luck:            _flatLuck += flat; _percentLuck += pct; break;
+                case StatType.Regen:           _flatRegen += flat; _percentRegen += pct; break;
+                case StatType.Armor:           _flatArmor += flat; break;
             }
             OnStatsChanged?.Invoke();
         }

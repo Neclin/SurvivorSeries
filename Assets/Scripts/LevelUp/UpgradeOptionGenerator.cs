@@ -82,12 +82,13 @@ namespace SurvivorSeries.LevelUp
                     if (passive == null) continue;
                     if (psm.HasMaxLevel(passive)) continue;
 
+                    string desc = passive.GetDescription();
                     if (psm.HasPassive(passive))
                     {
                         pool.Add((new UpgradeOption
                         {
-                            Name = $"{passive.ItemName} (Level Up)",
-                            Description = $"Increase {passive.ItemName} to the next level.",
+                            Name = $"{passive.ItemName} +1",
+                            Description = desc,
                             Type = UpgradeType.PassiveLevelUp,
                             PassiveData = passive
                         }, 3));
@@ -97,7 +98,7 @@ namespace SurvivorSeries.LevelUp
                         pool.Add((new UpgradeOption
                         {
                             Name = passive.ItemName,
-                            Description = $"Gain the {passive.ItemName} passive item.",
+                            Description = desc,
                             Type = UpgradeType.PassiveNew,
                             PassiveData = passive
                         }, 2));
