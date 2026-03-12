@@ -28,13 +28,14 @@ namespace SurvivorSeries.Weapons
 
         public void Initialize(Vector3 spawnPosition, Vector3 direction, float damage, float speed,
                                float lifetime, ProjectilePool pool,
-                               bool useGravity = false, bool pierce = false)
+                               bool useGravity = false, bool pierce = false, float area = 1f)
         {
             _damage = damage;
             _lifetime = lifetime;
             _pool = pool;
             _elapsed = 0f;
             _pierce = pierce;
+            transform.localScale = Vector3.one * Mathf.Max(0.1f, area);
 
             if (_pierce)
             {

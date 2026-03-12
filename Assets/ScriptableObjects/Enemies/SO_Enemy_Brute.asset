@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Enemy_Brute
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Brute
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 5550557546545563833, guid: cf78015269763414db0513055bef983a, type: 3}
   BaseHealth: 60
   BaseDamage: 14
   MoveSpeed: 1.8

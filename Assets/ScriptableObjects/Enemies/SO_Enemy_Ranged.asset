@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Enemy_Ranged
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Ranged
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 2645282983468875947, guid: 8341be38d72e7e14c97021192ad943cb, type: 3}
   BaseHealth: 14
   BaseDamage: 7
   MoveSpeed: 2.5

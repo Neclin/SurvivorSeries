@@ -55,6 +55,9 @@ namespace SurvivorSeries.Waves
         {
             if (_config == null) { Debug.LogError("WaveManager: No WaveConfig assigned."); return; }
 
+            if (waveNumber > 1 && ServiceLocator.TryGet<Player.PlayerHealth>(out var ph))
+                ph.ResetHealth();
+
             _currentWave = waveNumber;
             _difficulty ??= CreateDefaultDifficulty();
 
@@ -84,11 +87,25 @@ namespace SurvivorSeries.Waves
             if (ServiceLocator.TryGet<EnemySpawner>(out var spawner))
                 spawner.StopSpawning();
 
+            ClearField();
+
             OnWaveEnded?.Invoke(_currentWave);
             Debug.Log($"[WaveManager] Wave {_currentWave} ended.");
 
             if (ServiceLocator.TryGet<Core.GameManager>(out var gm))
+            {
                 gm.OnWaveEnded(IsFinalWave);
+                return;
+            }
+
+            if (!IsFinalWave && ServiceLocator.TryGet<UI.Shop.ShopUI>(out var shopUi))
+                shopUi.Show();
+        }
+
+        private void ClearField()
+        {
+            var pools = FindObjectsByType<EnemyPool>(FindObjectsSortMode.None);
+            foreach (var p in pools) p.DespawnAll();
         }
 
         private Enemies.Data.EnemyDataSO PickEnemyType(int wave)

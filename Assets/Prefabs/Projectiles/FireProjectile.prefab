@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6954756536684592428
+--- !u!1 &1194485203741828708
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3320635868232333829}
-  - component: {fileID: 5206087445674879108}
-  - component: {fileID: 7036540203524290219}
-  - component: {fileID: 1998498376871315988}
+  - component: {fileID: 6020978988505777631}
+  - component: {fileID: 6641553874150230312}
+  - component: {fileID: 4931494672517779882}
+  - component: {fileID: 5142196751308718137}
   m_Layer: 0
   m_Name: FireProjectile
   m_TagString: Untagged
@@ -19,29 +19,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3320635868232333829
+--- !u!4 &6020978988505777631
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954756536684592428}
+  m_GameObject: {fileID: 1194485203741828708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6624232369707287322}
+  - {fileID: 3019784139852639548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &5206087445674879108
+--- !u!54 &6641553874150230312
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954756536684592428}
+  m_GameObject: {fileID: 1194485203741828708}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -62,13 +62,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!135 &7036540203524290219
+--- !u!135 &4931494672517779882
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954756536684592428}
+  m_GameObject: {fileID: 1194485203741828708}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -83,25 +83,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1998498376871315988
+--- !u!114 &5142196751308718137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954756536684592428}
+  m_GameObject: {fileID: 1194485203741828708}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee484f75057059b419e84c75201ce74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.FireProjectile
---- !u!1001 &6657649847189988593
+--- !u!1001 &3342467869806627543
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3320635868232333829}
+    m_TransformParent: {fileID: 6020978988505777631}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: bcfca918b124c924c8fd83133ccbd4f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -164,8 +164,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcfca918b124c924c8fd83133ccbd4f5, type: 3}
---- !u!4 &6624232369707287322 stripped
+--- !u!4 &3019784139852639548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bcfca918b124c924c8fd83133ccbd4f5, type: 3}
-  m_PrefabInstance: {fileID: 6657649847189988593}
+  m_PrefabInstance: {fileID: 3342467869806627543}
   m_PrefabAsset: {fileID: 0}

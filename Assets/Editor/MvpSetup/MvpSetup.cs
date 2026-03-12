@@ -30,7 +30,7 @@ namespace SurvivorSeriesEditor
             if (bg.sprite == null) bg.sprite = DefaultUiSprite();
             SetRect(bgGo, anchorMin: new Vector2(0, 0), anchorMax: new Vector2(0, 0),
                           pivot: new Vector2(0, 0),
-                          anchoredPos: new Vector2(20, 40), size: new Vector2(320, 28));
+                          anchoredPos: new Vector2(20, 40), size: new Vector2(360, 36));
 
             var fillGo = FindOrCreateChild(bgGo, "HealthBar_Fill", typeof(RectTransform));
             EnsureComponent<CanvasRenderer>(fillGo);
@@ -51,7 +51,8 @@ namespace SurvivorSeriesEditor
             if (legacy != null) Object.DestroyImmediate(legacy);
             var healthTxt = EnsureComponent<TextMeshProUGUI>(healthTxtGo);
             healthTxt.text = "100 / 100";
-            healthTxt.fontSize = 16;
+            healthTxt.fontSize = 22;
+            healthTxt.fontStyle = FontStyles.Bold;
             healthTxt.alignment = TextAlignmentOptions.Center;
             healthTxt.color = Color.white;
             SetRect(healthTxtGo, anchorMin: new Vector2(0, 0), anchorMax: new Vector2(1, 1),
@@ -127,7 +128,7 @@ namespace SurvivorSeriesEditor
         }
 
         private static Sprite DefaultUiSprite()
-            => AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+            => GenerateFlatSprite.EnsureFlatSprite();
 
         public static void SetupVisuals_FirstSlice()
         {
@@ -183,6 +184,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/BowWeapon.prefab",
                 "Assets/Prefabs/Projectiles/ArrowProjectile.prefab",
                 "Assets/Prefabs/WeaponDisplays/BowDisplay.prefab",
+                description: "Fires arrows at the nearest enemy. Long range, fast cooldown.",
                 damage: new[] {10f,12f,15f,18f,22f,27f,33f,40f},
                 cooldown: new[] {0.9f,0.85f,0.8f,0.75f,0.7f,0.65f,0.6f,0.55f},
                 projCount: new[] {1,1,1,2,2,2,3,3});
@@ -191,6 +193,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/SwordWeapon.prefab",
                 projectilePrefabPath: null,
                 "Assets/Prefabs/WeaponDisplays/SwordDisplay.prefab",
+                description: "Sweeps a 90 degree melee arc in front of the player. High damage, short range.",
                 damage: new[] {15f,18f,22f,26f,31f,37f,44f,52f},
                 cooldown: new[] {0.7f,0.65f,0.6f,0.55f,0.5f,0.45f,0.4f,0.35f},
                 projCount: new[] {1,1,1,1,1,1,1,1});
@@ -199,6 +202,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/DaggerWeapon.prefab",
                 "Assets/Prefabs/Projectiles/DaggerProjectile.prefab",
                 "Assets/Prefabs/WeaponDisplays/DaggerDisplay.prefab",
+                description: "Throws fast piercing daggers that hit multiple enemies in a line.",
                 damage: new[] {7f,9f,11f,14f,17f,21f,26f,32f},
                 cooldown: new[] {0.5f,0.45f,0.42f,0.4f,0.38f,0.36f,0.34f,0.32f},
                 projCount: new[] {1,1,2,2,2,3,3,4});
@@ -207,6 +211,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/AxeWeapon.prefab",
                 "Assets/Prefabs/Projectiles/AxeProjectile.prefab",
                 "Assets/Prefabs/WeaponDisplays/AxeDisplay.prefab",
+                description: "Hurls a spinning axe with a slow cooldown. Highest single-hit damage.",
                 damage: new[] {18f,22f,27f,33f,40f,48f,57f,68f},
                 cooldown: new[] {1.2f,1.1f,1.05f,1.0f,0.95f,0.9f,0.85f,0.8f},
                 projCount: new[] {1,1,1,1,2,2,2,3});
@@ -215,6 +220,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/SpellbookWeapon.prefab",
                 "Assets/Prefabs/Projectiles/FireProjectile.prefab",
                 "Assets/Prefabs/WeaponDisplays/SpellbookDisplay.prefab",
+                description: "Conjures fire bolts that ignite enemies, dealing damage over time.",
                 damage: new[] {6f,7f,9f,11f,13f,16f,19f,23f},
                 cooldown: new[] {1.1f,1.0f,0.95f,0.9f,0.85f,0.8f,0.75f,0.7f},
                 projCount: new[] {1,1,1,2,2,2,3,3});
@@ -223,6 +229,7 @@ namespace SurvivorSeriesEditor
                 "Assets/Prefabs/Weapons/StaffWeapon.prefab",
                 projectilePrefabPath: null,
                 "Assets/Prefabs/WeaponDisplays/StaffDisplay.prefab",
+                description: "Strikes nearby enemies with a chain of lightning.",
                 damage: new[] {12f,15f,19f,23f,28f,34f,41f,49f},
                 cooldown: new[] {1.4f,1.3f,1.2f,1.1f,1.0f,0.9f,0.8f,0.7f},
                 projCount: new[] {1,2,2,3,3,4,4,5});
@@ -277,6 +284,7 @@ namespace SurvivorSeriesEditor
         private static void CreateWeaponSO(string name, WeaponType type,
                                            string weaponPrefabPath, string projectilePrefabPath,
                                            string displayPrefabPath,
+                                           string description,
                                            float[] damage, float[] cooldown, int[] projCount)
         {
             Directory.CreateDirectory("Assets/ScriptableObjects/Weapons");
@@ -287,6 +295,7 @@ namespace SurvivorSeriesEditor
 
             var so = ScriptableObject.CreateInstance<WeaponDataSO>();
             so.WeaponName = name;
+            so.Description = description;
             so.Type = type;
             so.WeaponPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(weaponPrefabPath);
             so.ProjectilePrefab = projectilePrefabPath != null
@@ -297,7 +306,7 @@ namespace SurvivorSeriesEditor
             so.AreaPerLevel = new[] {1f,1f,1.05f,1.1f,1.15f,1.2f,1.25f,1.3f};
             so.ProjectileCountPerLevel = projCount;
             so.MaxLevel = 8;
-            so.ShopPurchaseCost = 100;
+            so.ShopPurchaseCost = 60;
 
             AssetDatabase.CreateAsset(so, outPath);
             AssetDatabase.SaveAssets();

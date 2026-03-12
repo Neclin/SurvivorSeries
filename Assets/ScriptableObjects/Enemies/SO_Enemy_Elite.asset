@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Enemy_Elite
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Elite
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 456595741844093151, guid: 720945dbae4ff464e8e3950aa0220ae5, type: 3}
   BaseHealth: 90
   BaseDamage: 16
   MoveSpeed: 2.6

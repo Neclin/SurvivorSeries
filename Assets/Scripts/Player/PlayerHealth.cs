@@ -7,9 +7,11 @@ namespace SurvivorSeries.Player
     public class PlayerHealth : MonoBehaviour
     {
         private PlayerStats _stats;
+        private Utilities.HitFlash _flash;
         private float _currentHealth;
         private float _invincibilityTimer;
         private float _regenAccumulator;
+        private float _lastMaxHealth;
 
         private const float InvincibilityDuration = 0.5f;
 
@@ -23,16 +25,39 @@ namespace SurvivorSeries.Player
         private void Awake()
         {
             _stats = GetComponent<PlayerStats>();
+            _flash = GetComponentInChildren<Utilities.HitFlash>();
             ServiceLocator.Register<PlayerHealth>(this);
         }
 
         private void Start()
         {
             _currentHealth = MaxHealth;
+            _lastMaxHealth = MaxHealth;
             OnHealthChanged?.Invoke(_currentHealth, MaxHealth);
+
+            if (_stats != null)
+                _stats.OnStatsChanged += HandleStatsChanged;
         }
 
-        private void OnDestroy() => ServiceLocator.Unregister<PlayerHealth>();
+        private void OnDestroy()
+        {
+            if (_stats != null)
+                _stats.OnStatsChanged -= HandleStatsChanged;
+            ServiceLocator.Unregister<PlayerHealth>();
+        }
+
+        private void HandleStatsChanged()
+        {
+            float newMax = MaxHealth;
+            float delta = newMax - _lastMaxHealth;
+            if (delta > 0f)
+                _currentHealth = Mathf.Min(newMax, _currentHealth + delta);
+            else
+                _currentHealth = Mathf.Min(_currentHealth, newMax);
+            _lastMaxHealth = newMax;
+            OnHealthChanged?.Invoke(_currentHealth, newMax);
+            Debug.Log($"[PlayerHealth] Stats changed → max={newMax} cur={_currentHealth}");
+        }
 
         private void Update()
         {
@@ -58,6 +83,7 @@ namespace SurvivorSeries.Player
             float mitigated = Mathf.Max(0f, amount - (_stats != null ? _stats.Armor : 0f));
             _currentHealth = Mathf.Max(0f, _currentHealth - mitigated);
             _invincibilityTimer = InvincibilityDuration;
+            _flash?.Flash();
             OnHealthChanged?.Invoke(_currentHealth, MaxHealth);
 
             if (_currentHealth <= 0f)

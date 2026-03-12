@@ -6,6 +6,8 @@ namespace SurvivorSeries.Enemies
     [RequireComponent(typeof(EnemyHealth), typeof(EnemyMovement), typeof(EnemyDropper))]
     public abstract class EnemyBase : MonoBehaviour
     {
+        [System.NonSerialized] public EnemyBase OriginPrefab;
+
         protected EnemyDataSO _data;
         protected EnemyHealth _health;
         protected EnemyMovement _movement;

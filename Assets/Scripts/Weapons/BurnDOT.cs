@@ -13,6 +13,8 @@ namespace SurvivorSeries.Weapons
 
         private void Awake() => _hp = GetComponent<EnemyHealth>();
 
+        private void OnDisable() => Destroy(this);
+
         public void Apply(float damagePerTick, float interval, float duration)
         {
             _tickDamage = Mathf.Max(_tickDamage, damagePerTick);

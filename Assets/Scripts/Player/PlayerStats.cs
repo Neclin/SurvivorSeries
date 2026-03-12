@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SurvivorSeries.Characters.Data;
+using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Player
 {
@@ -63,6 +64,9 @@ namespace SurvivorSeries.Player
         };
 
         public event Action OnStatsChanged;
+
+        private void Awake() => ServiceLocator.Register<PlayerStats>(this);
+        private void OnDestroy() => ServiceLocator.Unregister<PlayerStats>();
 
         public float MaxHealth => (_baseMaxHealth + _flatMaxHealth) * (1f + _percentMaxHealth);
         public float MoveSpeed => (_baseMoveSpeed + _flatMoveSpeed) * (1f + _percentMoveSpeed);

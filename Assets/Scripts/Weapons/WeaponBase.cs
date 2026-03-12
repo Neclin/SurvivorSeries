@@ -124,6 +124,12 @@ namespace SurvivorSeries.Weapons
             _level++;
         }
 
+        public void SetLevel(int level)
+        {
+            int max = _data != null ? _data.MaxLevel : 8;
+            _level = Mathf.Clamp(level, 1, max);
+        }
+
         public bool CanEvolve()
         {
             if (_evolvedData != null) return false;

@@ -17,9 +17,12 @@ namespace SurvivorSeries.Enemies
         public event Action OnDeath;
         public event Action<float> OnDamageTaken;
 
+        private Utilities.HitFlash _flash;
+
         private void Awake()
         {
             EnemyId = _nextId++;
+            _flash = GetComponentInChildren<Utilities.HitFlash>();
         }
 
         public void Initialize(float maxHealth)
@@ -32,6 +35,7 @@ namespace SurvivorSeries.Enemies
         {
             if (IsDead) return;
             _currentHealth = Mathf.Max(0f, _currentHealth - amount);
+            _flash?.Flash();
             OnDamageTaken?.Invoke(amount);
 
             if (_currentHealth <= 0f)

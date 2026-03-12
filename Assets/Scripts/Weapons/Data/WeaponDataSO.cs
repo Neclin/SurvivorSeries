@@ -9,6 +9,7 @@ namespace SurvivorSeries.Weapons.Data
     {
         [Header("Identity")]
         public string WeaponName;
+        [TextArea] public string Description;
         public Sprite Icon;
         public WeaponType Type;
 

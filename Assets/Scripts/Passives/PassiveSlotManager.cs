@@ -7,9 +7,14 @@ namespace SurvivorSeries.Passives
 {
     public class PassiveSlotManager : MonoBehaviour
     {
-        private const int MaxSlots = 6;
+        public const int MaxSlots = 6;
         private readonly PassiveItemDataSO[] _slots = new PassiveItemDataSO[MaxSlots];
         private readonly int[] _levels = new int[MaxSlots];
+
+        public PassiveItemDataSO GetSlotData(int i) => (i < 0 || i >= MaxSlots) ? null : _slots[i];
+        public int GetSlotLevel(int i) => (i < 0 || i >= MaxSlots) ? 0 : _levels[i];
+
+        public event System.Action OnInventoryChanged;
 
         private void Awake() => ServiceLocator.Register<PassiveSlotManager>(this);
         private void OnDestroy() => ServiceLocator.Unregister<PassiveSlotManager>();
@@ -18,7 +23,12 @@ namespace SurvivorSeries.Passives
         {
             for (int i = 0; i < MaxSlots; i++)
             {
-                if (_slots[i] == null) { _slots[i] = data; _levels[i] = 1; ApplyModifier(data, 1); return true; }
+                if (_slots[i] == null)
+                {
+                    _slots[i] = data; _levels[i] = 1; ApplyModifier(data, 1);
+                    OnInventoryChanged?.Invoke();
+                    return true;
+                }
                 if (_slots[i] == data) return TryLevelUpPassive(data);
             }
             return false;
@@ -32,6 +42,7 @@ namespace SurvivorSeries.Passives
                 if (_levels[i] >= data.MaxLevel) return false;
                 _levels[i]++;
                 ApplyModifier(data, 1);
+                OnInventoryChanged?.Invoke();
                 return true;
             }
             return false;

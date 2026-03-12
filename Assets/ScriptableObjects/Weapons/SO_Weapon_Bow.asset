@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_Weapon_Bow
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Bow
+  Description: Fires arrows at the nearest enemy. Long range, fast cooldown.
   Icon: {fileID: 0}
   Type: 0
-  WeaponPrefab: {fileID: 5643709300946906530, guid: 7239051c92e9d8942a8206ce8a325f66, type: 3}
+  WeaponPrefab: {fileID: 5649325059109814442, guid: 7239051c92e9d8942a8206ce8a325f66, type: 3}
   ProjectilePrefab: {fileID: 5583321000302002673, guid: 272064b42171c5540bac3d077f4d9883, type: 3}
   DisplayPrefab: {fileID: 8932108999705663997, guid: 387ae6d9233a64f42afbce1cf0bd6222, type: 3}
   BaseDamagePerLevel:
@@ -49,4 +50,4 @@ MonoBehaviour:
   MaxLevel: 8
   EvolutionRequirement: {fileID: 0}
   EvolvedForm: {fileID: 0}
-  ShopPurchaseCost: 100
+  ShopPurchaseCost: 60

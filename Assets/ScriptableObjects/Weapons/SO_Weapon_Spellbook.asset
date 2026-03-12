@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: SO_Weapon_Spellbook
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Spellbook
+  Description: Conjures fire bolts that ignite enemies, dealing damage over time.
   Icon: {fileID: 0}
   Type: 0
-  WeaponPrefab: {fileID: 1692944597062507847, guid: 41669df7caf45af4987dedd9769a123b, type: 3}
-  ProjectilePrefab: {fileID: 6954756536684592428, guid: ef7310fd132fce34d8e1d2b1019a72b4, type: 3}
+  WeaponPrefab: {fileID: 6394294816970814678, guid: 41669df7caf45af4987dedd9769a123b, type: 3}
+  ProjectilePrefab: {fileID: 1194485203741828708, guid: ef7310fd132fce34d8e1d2b1019a72b4, type: 3}
   DisplayPrefab: {fileID: 3892430807272033665, guid: 01359d30f68face409ced30873c053d9, type: 3}
   BaseDamagePerLevel:
   - 6
@@ -49,4 +50,4 @@ MonoBehaviour:
   MaxLevel: 8
   EvolutionRequirement: {fileID: 0}
   EvolvedForm: {fileID: 0}
-  ShopPurchaseCost: 100
+  ShopPurchaseCost: 60

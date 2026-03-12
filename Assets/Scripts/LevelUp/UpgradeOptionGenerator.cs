@@ -25,53 +25,9 @@ namespace SurvivorSeries.LevelUp
 
         public List<UpgradeOption> GenerateOptions(int count, float luckMultiplier)
         {
-            bool hasWeaponSlot = ServiceLocator.TryGet<WeaponSlotManager>(out var wsm);
             bool hasPassiveSlot = ServiceLocator.TryGet<PassiveSlotManager>(out var psm);
 
             var pool = new List<(UpgradeOption option, int weight)>();
-
-            if (hasWeaponSlot)
-            {
-                bool weaponSlotFree = false;
-                foreach (var slot in wsm.GetAllWeapons())
-                {
-                    if (slot == null) { weaponSlotFree = true; break; }
-                }
-
-                foreach (var weapon in _allWeapons)
-                {
-                    if (weapon == null) continue;
-
-                    if (wsm.HasWeapon(weapon))
-                    {
-                        bool isMax = false;
-                        foreach (var w in wsm.GetAllWeapons())
-                        {
-                            if (w != null && w.Data == weapon && w.IsMaxLevel) { isMax = true; break; }
-                        }
-                        if (!isMax)
-                        {
-                            pool.Add((new UpgradeOption
-                            {
-                                Name = $"{weapon.WeaponName} (Level Up)",
-                                Description = $"Upgrade your {weapon.WeaponName} to the next level.",
-                                Type = UpgradeType.WeaponLevelUp,
-                                WeaponData = weapon
-                            }, 3));
-                        }
-                    }
-                    else if (weaponSlotFree)
-                    {
-                        pool.Add((new UpgradeOption
-                        {
-                            Name = weapon.WeaponName,
-                            Description = $"Equip the {weapon.WeaponName}.",
-                            Type = UpgradeType.WeaponNew,
-                            WeaponData = weapon
-                        }, 2));
-                    }
-                }
-            }
 
             if (hasPassiveSlot)
             {

@@ -25,4 +25,4 @@ MonoBehaviour:
     FlatBonus: 0
     PercentBonus: -0.2
   MaxLevel: 3
-  ShopPurchaseCost: 200
+  ShopPurchaseCost: 75

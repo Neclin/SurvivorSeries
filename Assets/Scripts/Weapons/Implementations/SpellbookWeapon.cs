@@ -31,7 +31,8 @@ namespace SurvivorSeries.Weapons.Implementations
                 Projectile proj = _projectilePool.Get();
                 if (proj is FireProjectile fire)
                     fire.SetDot(_dotDamagePerTick, _dotInterval, _dotDuration);
-                proj.Initialize(origin, dir, GetDamage(), projSpeed, 4f, _projectilePool);
+                proj.Initialize(origin, dir, GetDamage(), projSpeed, 4f, _projectilePool,
+                                area: GetArea());
             }
         }
     }

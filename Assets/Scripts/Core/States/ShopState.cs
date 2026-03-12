@@ -8,10 +8,6 @@ namespace SurvivorSeries.Core.States
         public override void Enter()
         {
             Debug.Log("[State] Shop");
-            Time.timeScale = 0f;
-
-            if (ServiceLocator.TryGet<Shop.ShopManager>(out var shop))
-                shop.GenerateInventory();
 
             if (ServiceLocator.TryGet<UI.Shop.ShopUI>(out var ui))
                 ui.Show();

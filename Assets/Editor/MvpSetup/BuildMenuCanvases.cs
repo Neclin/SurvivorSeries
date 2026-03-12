@@ -62,44 +62,88 @@ namespace SurvivorSeriesEditor
             EnsureComp<ShopUI>(canvas);
 
             var panel = FindOrCreate(canvas.transform, "Panel");
+            ClearChildren(panel.transform);
             var pImg = EnsureComp<Image>(panel);
-            pImg.color = new Color(0f, 0f, 0f, 0.85f);
+            pImg.color = new Color(0f, 0f, 0f, 0.92f);
             if (pImg.sprite == null) pImg.sprite = DefaultUiSprite();
             SetRect(panel, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
             EnsureComp<GraphicRaycaster>(canvas);
 
             var title = MakeText(panel.transform, "Title", "SHOP", 48, TextAlignmentOptions.Center, Color.white);
             SetRect(title, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
-                    new Vector2(0, -40), new Vector2(800, 70));
+                    new Vector2(0, -30), new Vector2(800, 60));
 
             var gold = MakeText(panel.transform, "Gold", "Gold: 0", 32, TextAlignmentOptions.Right,
                                 new Color(1f, 0.85f, 0.2f, 1f));
             SetRect(gold, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(1f, 1f),
-                    new Vector2(-40, -40), new Vector2(280, 50));
+                    new Vector2(-30, -30), new Vector2(280, 50));
+
+            var buyHeader = MakeText(panel.transform, "BuyHeader", "PURCHASES",
+                26, TextAlignmentOptions.Center, new Color(0.85f, 0.85f, 0.85f, 1f));
+            SetRect(buyHeader, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
+                    new Vector2(0, -100), new Vector2(800, 30));
 
             var grid = FindOrCreate(panel.transform, "ItemsGrid");
             var glg = EnsureComp<GridLayoutGroup>(grid);
-            glg.cellSize = new Vector2(380, 200);
+            glg.cellSize = new Vector2(300, 200);
             glg.spacing = new Vector2(20, 20);
             glg.childAlignment = TextAnchor.MiddleCenter;
             glg.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            glg.constraintCount = 3;
-            SetRect(grid, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
-                    new Vector2(0, 30), new Vector2(1180, 440));
+            glg.constraintCount = 4;
+            SetRect(grid, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f),
+                    new Vector2(0, -245), new Vector2(1300, 220));
 
-            var slots = new ShopItemUI[6];
-            for (int i = 0; i < 6; i++)
+            var slots = new ShopItemUI[4];
+            for (int i = 0; i < 4; i++)
                 slots[i] = BuildShopItemCard(grid.transform, $"ItemSlot_{i}");
+
+            var weaponHeader = MakeText(panel.transform, "WeaponsHeader", "YOUR WEAPONS",
+                26, TextAlignmentOptions.Center, new Color(0.85f, 0.85f, 0.85f, 1f));
+            SetRect(weaponHeader, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                    new Vector2(0, 50), new Vector2(800, 30));
+
+            var weaponRow = FindOrCreate(panel.transform, "WeaponsRow");
+            var wlg = EnsureComp<GridLayoutGroup>(weaponRow);
+            wlg.cellSize = new Vector2(190, 130);
+            wlg.spacing = new Vector2(15, 15);
+            wlg.childAlignment = TextAnchor.MiddleCenter;
+            wlg.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            wlg.constraintCount = 6;
+            SetRect(weaponRow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                    new Vector2(0, -30), new Vector2(1300, 140));
+
+            var weaponCards = new WeaponInventoryCard[6];
+            for (int i = 0; i < 6; i++)
+                weaponCards[i] = BuildWeaponInventoryCard(weaponRow.transform, $"WSlot_{i}");
+
+            var passiveHeader = MakeText(panel.transform, "PassivesHeader", "YOUR PASSIVES",
+                26, TextAlignmentOptions.Center, new Color(0.85f, 0.85f, 0.85f, 1f));
+            SetRect(passiveHeader, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                    new Vector2(0, -135), new Vector2(800, 30));
+
+            var passiveRow = FindOrCreate(panel.transform, "PassivesRow");
+            var plg = EnsureComp<GridLayoutGroup>(passiveRow);
+            plg.cellSize = new Vector2(190, 90);
+            plg.spacing = new Vector2(15, 15);
+            plg.childAlignment = TextAnchor.MiddleCenter;
+            plg.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            plg.constraintCount = 6;
+            SetRect(passiveRow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                    new Vector2(0, -210), new Vector2(1300, 100));
+
+            var passiveCards = new PassiveInventoryCard[6];
+            for (int i = 0; i < 6; i++)
+                passiveCards[i] = BuildPassiveInventoryCard(passiveRow.transform, $"PSlot_{i}");
 
             var rerollBtn = BuildButton(panel.transform, "RerollBtn", "Reroll (50g)",
                 new Color(0.45f, 0.30f, 0.55f, 1f));
             SetRect(rerollBtn.gameObject, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
-                    new Vector2(0.5f, 0f), new Vector2(-160, 60), new Vector2(280, 70));
+                    new Vector2(0.5f, 0f), new Vector2(-160, 50), new Vector2(280, 70));
 
             var continueBtn = BuildButton(panel.transform, "ContinueBtn", "Continue",
                 new Color(0.30f, 0.55f, 0.30f, 1f));
             SetRect(continueBtn.gameObject, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
-                    new Vector2(0.5f, 0f), new Vector2(160, 60), new Vector2(280, 70));
+                    new Vector2(0.5f, 0f), new Vector2(160, 50), new Vector2(280, 70));
 
             var rerollLabel = rerollBtn.GetComponentInChildren<TextMeshProUGUI>();
 
@@ -112,12 +156,108 @@ namespace SurvivorSeriesEditor
             SetRef(so, "_rerollButton", rerollBtn);
             SetRef(so, "_continueButton", continueBtn);
             var slotsProp = so.FindProperty("_itemSlots");
-            slotsProp.arraySize = 6;
-            for (int i = 0; i < 6; i++)
+            slotsProp.arraySize = 4;
+            for (int i = 0; i < 4; i++)
                 slotsProp.GetArrayElementAtIndex(i).objectReferenceValue = slots[i];
+            var wcProp = so.FindProperty("_weaponCards");
+            wcProp.arraySize = 6;
+            for (int i = 0; i < 6; i++)
+                wcProp.GetArrayElementAtIndex(i).objectReferenceValue = weaponCards[i];
+            var pcProp = so.FindProperty("_passiveCards");
+            pcProp.arraySize = 6;
+            for (int i = 0; i < 6; i++)
+                pcProp.GetArrayElementAtIndex(i).objectReferenceValue = passiveCards[i];
             so.ApplyModifiedProperties();
 
             panel.SetActive(false);
+        }
+
+        private static void ClearChildren(Transform t)
+        {
+            for (int i = t.childCount - 1; i >= 0; i--)
+                Object.DestroyImmediate(t.GetChild(i).gameObject);
+        }
+
+        private static WeaponInventoryCard BuildWeaponInventoryCard(Transform parent, string name)
+        {
+            var card = FindOrCreate(parent, name);
+            var bg = EnsureComp<Image>(card);
+            bg.color = new Color(0.18f, 0.20f, 0.25f, 0.95f);
+            if (bg.sprite == null) bg.sprite = DefaultUiSprite();
+
+            var nameText = MakeText(card.transform, "Name", "—", 18,
+                TextAlignmentOptions.Center, Color.white);
+            SetRect(nameText, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1f),
+                    new Vector2(0, -8), new Vector2(0, 26));
+
+            var levelText = MakeText(card.transform, "Level", "", 14,
+                TextAlignmentOptions.Center, new Color(0.8f, 0.8f, 0.85f, 1f));
+            SetRect(levelText, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1f),
+                    new Vector2(0, -38), new Vector2(0, 22));
+
+            var mergeGo = FindOrCreate(card.transform, "MergeBtn");
+            var mImg = EnsureComp<Image>(mergeGo);
+            mImg.color = new Color(0.85f, 0.55f, 0.20f, 1f);
+            if (mImg.sprite == null) mImg.sprite = DefaultUiSprite();
+            var mBtn = EnsureComp<Button>(mergeGo);
+            SetRect(mergeGo, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
+                    new Vector2(0, 12), new Vector2(160, 36));
+            var mLabel = MakeText(mergeGo.transform, "Label", "Merge", 16,
+                TextAlignmentOptions.Center, Color.white);
+            SetRect(mLabel, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f),
+                    Vector2.zero, Vector2.zero);
+
+            var emptyGo = FindOrCreate(card.transform, "EmptyOverlay");
+            var eImg = EnsureComp<Image>(emptyGo);
+            eImg.color = new Color(0f, 0f, 0f, 0.5f);
+            if (eImg.sprite == null) eImg.sprite = DefaultUiSprite();
+            SetRect(emptyGo, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f),
+                    Vector2.zero, Vector2.zero);
+            emptyGo.SetActive(false);
+
+            var ui = EnsureComp<WeaponInventoryCard>(card);
+            var so = new SerializedObject(ui);
+            SetRef(so, "_nameText", nameText.GetComponent<TextMeshProUGUI>());
+            SetRef(so, "_levelText", levelText.GetComponent<TextMeshProUGUI>());
+            SetRef(so, "_mergeButton", mBtn);
+            SetRef(so, "_mergeLabel", mLabel.GetComponent<TextMeshProUGUI>());
+            SetRef(so, "_emptyOverlay", emptyGo);
+            so.ApplyModifiedProperties();
+            return ui;
+        }
+
+        private static PassiveInventoryCard BuildPassiveInventoryCard(Transform parent, string name)
+        {
+            var card = FindOrCreate(parent, name);
+            var bg = EnsureComp<Image>(card);
+            bg.color = new Color(0.18f, 0.22f, 0.20f, 0.95f);
+            if (bg.sprite == null) bg.sprite = DefaultUiSprite();
+
+            var nameText = MakeText(card.transform, "Name", "—", 18,
+                TextAlignmentOptions.Center, Color.white);
+            SetRect(nameText, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1f),
+                    new Vector2(0, -10), new Vector2(0, 26));
+
+            var levelText = MakeText(card.transform, "Level", "", 16,
+                TextAlignmentOptions.Center, new Color(0.85f, 0.85f, 0.85f, 1f));
+            SetRect(levelText, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0.5f, 0f),
+                    new Vector2(0, 12), new Vector2(0, 22));
+
+            var emptyGo = FindOrCreate(card.transform, "EmptyOverlay");
+            var eImg = EnsureComp<Image>(emptyGo);
+            eImg.color = new Color(0f, 0f, 0f, 0.5f);
+            if (eImg.sprite == null) eImg.sprite = DefaultUiSprite();
+            SetRect(emptyGo, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f),
+                    Vector2.zero, Vector2.zero);
+            emptyGo.SetActive(false);
+
+            var ui = EnsureComp<PassiveInventoryCard>(card);
+            var so = new SerializedObject(ui);
+            SetRef(so, "_nameText", nameText.GetComponent<TextMeshProUGUI>());
+            SetRef(so, "_levelText", levelText.GetComponent<TextMeshProUGUI>());
+            SetRef(so, "_emptyOverlay", emptyGo);
+            so.ApplyModifiedProperties();
+            return ui;
         }
 
         private static ShopItemUI BuildShopItemCard(Transform parent, string name)
@@ -390,7 +530,7 @@ namespace SurvivorSeriesEditor
         }
 
         private static Sprite DefaultUiSprite()
-            => AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+            => GenerateFlatSprite.EnsureFlatSprite();
 
         private static string[] ScanAssetPaths(string dir)
         {

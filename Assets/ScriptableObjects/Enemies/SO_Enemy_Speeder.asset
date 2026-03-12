@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Enemy_Speeder
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Speeder
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 9121416424513956583, guid: 7f9702f98537a384b8a2fb2cd37dd34f, type: 3}
   BaseHealth: 10
   BaseDamage: 6
   MoveSpeed: 5.5

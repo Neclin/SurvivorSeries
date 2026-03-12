@@ -33,6 +33,18 @@ namespace SurvivorSeries.Utilities
 
         public int AvailableCount => _available.Count;
 
+        public void ReturnAllActive()
+        {
+            if (_parent == null) return;
+            for (int i = _parent.childCount - 1; i >= 0; i--)
+            {
+                var go = _parent.GetChild(i).gameObject;
+                if (!go.activeSelf) continue;
+                var c = go.GetComponent<T>();
+                if (c != null) Return(c);
+            }
+        }
+
         private T CreateNew()
         {
             T obj = Object.Instantiate(_prefab, _parent);

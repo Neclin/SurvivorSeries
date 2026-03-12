@@ -26,87 +26,84 @@ namespace SurvivorSeries.Shop
             ServiceLocator.TryGet<PassiveSlotManager>(out var psm);
             ServiceLocator.TryGet<PlayerHealth>(out var health);
 
-            var candidates = BuildCandidates(wsm, psm, health, difficultyMultiplier);
+            var pool = new List<ShopItem>();
 
-            for (int i = candidates.Count - 1; i > 0; i--)
-            {
-                int j = UnityEngine.Random.Range(0, i + 1);
-                (candidates[i], candidates[j]) = (candidates[j], candidates[i]);
-            }
+            if (wsm != null)
+                foreach (var w in _allWeapons)
+                    if (w != null && wsm.CanBuyNew(w))
+                        pool.Add(MakeWeaponNew(w, difficultyMultiplier));
+
+            if (psm != null && psm.HasFreeSlot())
+                foreach (var p in _allPassives)
+                    if (!psm.HasPassive(p))
+                        pool.Add(MakePassiveNew(p, difficultyMultiplier));
+
+            if (psm != null)
+                foreach (var p in _allPassives)
+                    if (psm.HasPassive(p) && !psm.HasMaxLevel(p))
+                        pool.Add(MakePassiveLevelUp(p, difficultyMultiplier));
+
+            if (health != null && health.CurrentHealth < health.MaxHealth)
+                pool.Add(MakeHealItem(difficultyMultiplier));
+
+            Shuffle(pool);
 
             var items = new List<ShopItem>();
-            for (int i = 0; i < Mathf.Min(6, candidates.Count); i++)
-                items.Add(candidates[i]);
+            int n = Mathf.Min(BuySlotCount, pool.Count);
+            for (int i = 0; i < n; i++) items.Add(pool[i]);
 
-            while (items.Count < 6)
+            while (items.Count < BuySlotCount)
                 items.Add(MakeChestItem(difficultyMultiplier));
 
             return items;
         }
 
-        private List<ShopItem> BuildCandidates(WeaponSlotManager wsm, PassiveSlotManager psm,
-                                                PlayerHealth health, float mult)
+        public const int BuySlotCount = 4;
+
+        private static void Shuffle<T>(List<T> list)
         {
-            var list = new List<ShopItem>();
-
-            if (wsm != null && wsm.HasFreeSlot())
-                foreach (var w in _allWeapons)
-                    if (!wsm.HasWeapon(w))
-                        list.Add(MakeWeaponNew(w, mult));
-
-            if (wsm != null)
-                foreach (var w in _allWeapons)
-                    if (wsm.HasWeapon(w) && !wsm.IsMaxLevel(w))
-                        list.Add(MakeWeaponLevelUp(w, mult));
-
-            if (psm != null && psm.HasFreeSlot())
-                foreach (var p in _allPassives)
-                    if (!psm.HasPassive(p))
-                        list.Add(MakePassiveNew(p, mult));
-
-            if (psm != null)
-                foreach (var p in _allPassives)
-                    if (psm.HasPassive(p) && !psm.HasMaxLevel(p))
-                        list.Add(MakePassiveLevelUp(p, mult));
-
-            if (health != null && health.CurrentHealth < health.MaxHealth)
-                list.Add(MakeHealItem(mult));
-
-            return list;
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = UnityEngine.Random.Range(0, i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
         }
 
         private ShopItem MakeWeaponNew(WeaponDataSO data, float mult)
         {
             int cost = Mathf.RoundToInt(data.ShopPurchaseCost * mult);
+            string desc = !string.IsNullOrEmpty(data.Description)
+                ? data.Description
+                : "Lv. 1 weapon. Combine two of the same level to upgrade.";
             var item = new ShopItem
             {
                 Type = ShopItemType.WeaponNew,
                 Name = data.WeaponName,
-                Description = $"Add {data.WeaponName} to your arsenal.",
+                Description = desc,
                 Cost = cost,
                 WeaponData = data
             };
             item.OnPurchase = () =>
             {
-                if (ServiceLocator.TryGet<WeaponSlotManager>(out var w)) w.TryAddWeapon(data);
+                if (ServiceLocator.TryGet<WeaponSlotManager>(out var w)) w.TryBuyNew(data);
             };
             return item;
         }
 
-        private ShopItem MakeWeaponLevelUp(WeaponDataSO data, float mult)
+        private ShopItem MakeWeaponCombine(WeaponDataSO data, int level)
         {
-            int cost = Mathf.RoundToInt(data.ShopPurchaseCost * 0.7f * mult);
             var item = new ShopItem
             {
-                Type = ShopItemType.WeaponLevelUp,
-                Name = $"{data.WeaponName} +1",
-                Description = $"Upgrade {data.WeaponName} to the next level.",
-                Cost = cost,
-                WeaponData = data
+                Type = ShopItemType.WeaponCombine,
+                Name = $"Combine {data.WeaponName} Lv.{level}",
+                Description = $"Merge two Lv.{level} {data.WeaponName} into one Lv.{level + 1}.",
+                Cost = 0,
+                WeaponData = data,
+                CombineLevel = level
             };
             item.OnPurchase = () =>
             {
-                if (ServiceLocator.TryGet<WeaponSlotManager>(out var w)) w.TryLevelUpWeapon(data);
+                if (ServiceLocator.TryGet<WeaponSlotManager>(out var w)) w.TryCombine(data, level);
             };
             return item;
         }

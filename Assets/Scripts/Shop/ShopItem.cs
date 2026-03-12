@@ -7,7 +7,7 @@ namespace SurvivorSeries.Shop
     public enum ShopItemType
     {
         WeaponNew,
-        WeaponLevelUp,
+        WeaponCombine,
         PassiveNew,
         PassiveLevelUp,
         Heal,
@@ -22,6 +22,7 @@ namespace SurvivorSeries.Shop
         public int Cost;
         public WeaponDataSO WeaponData;
         public PassiveItemDataSO PassiveData;
+        public int CombineLevel;
         public Action OnPurchase;
     }
 }

@@ -36,46 +36,46 @@ namespace SurvivorSeriesEditor
         {
             Directory.CreateDirectory(PassiveDir);
 
-            CreatePassive("IronHeart", "Iron Heart", maxLvl: 5, cost: 100,
+            CreatePassive("IronHeart", "Iron Heart", maxLvl: 5, cost: 35,
                 Mod(StatType.MaxHealth, flat: 15f));
 
-            CreatePassive("Berserker", "Berserker's Rune", maxLvl: 5, cost: 120,
+            CreatePassive("Berserker", "Berserker's Rune", maxLvl: 5, cost: 45,
                 Mod(StatType.Damage, pct: 0.20f),
                 Mod(StatType.MoveSpeed, pct: -0.05f));
 
-            CreatePassive("Boots", "Swift Boots", maxLvl: 5, cost: 100,
+            CreatePassive("Boots", "Swift Boots", maxLvl: 5, cost: 40,
                 Mod(StatType.MoveSpeed, pct: 0.10f),
                 Mod(StatType.MaxHealth, pct: -0.05f));
 
-            CreatePassive("Magnifier", "Magnifier", maxLvl: 5, cost: 90,
+            CreatePassive("Magnifier", "Magnifier", maxLvl: 5, cost: 35,
                 Mod(StatType.Area, pct: 0.15f));
 
-            CreatePassive("QuickCharge", "Quick Charge", maxLvl: 5, cost: 110,
+            CreatePassive("QuickCharge", "Quick Charge", maxLvl: 5, cost: 40,
                 Mod(StatType.CooldownReduction, flat: 0.10f));
 
-            CreatePassive("VelocityCrystal", "Velocity Crystal", maxLvl: 5, cost: 80,
+            CreatePassive("VelocityCrystal", "Velocity Crystal", maxLvl: 5, cost: 30,
                 Mod(StatType.ProjectileSpeed, pct: 0.20f));
 
-            CreatePassive("RabbitsFoot", "Rabbit's Foot", maxLvl: 5, cost: 90,
+            CreatePassive("RabbitsFoot", "Rabbit's Foot", maxLvl: 5, cost: 35,
                 Mod(StatType.Luck, pct: 0.20f));
 
-            CreatePassive("PhoenixPlume", "Phoenix Plume", maxLvl: 5, cost: 130,
+            CreatePassive("PhoenixPlume", "Phoenix Plume", maxLvl: 5, cost: 50,
                 Mod(StatType.Regen, flat: 0.5f));
 
-            CreatePassive("PlateArmor", "Plate Armor", maxLvl: 5, cost: 130,
+            CreatePassive("PlateArmor", "Plate Armor", maxLvl: 5, cost: 50,
                 Mod(StatType.Armor, flat: 2f),
                 Mod(StatType.MoveSpeed, pct: -0.08f));
 
-            CreatePassive("VampiricCharm", "Vampiric Charm", maxLvl: 5, cost: 140,
+            CreatePassive("VampiricCharm", "Vampiric Charm", maxLvl: 5, cost: 55,
                 Mod(StatType.Regen, flat: 1f),
                 Mod(StatType.MaxHealth, flat: -8f));
 
-            CreatePassive("GlassCannon", "Glass Cannon", maxLvl: 3, cost: 200,
+            CreatePassive("GlassCannon", "Glass Cannon", maxLvl: 3, cost: 75,
                 Mod(StatType.Damage, pct: 0.30f),
                 Mod(StatType.ProjectileSpeed, pct: 0.20f),
                 Mod(StatType.MaxHealth, pct: -0.20f));
 
-            CreatePassive("WispsGrace", "Wisp's Grace", maxLvl: 3, cost: 180,
+            CreatePassive("WispsGrace", "Wisp's Grace", maxLvl: 3, cost: 70,
                 Mod(StatType.MoveSpeed, pct: 0.10f),
                 Mod(StatType.CooldownReduction, flat: 0.08f),
                 Mod(StatType.Damage, pct: -0.12f));

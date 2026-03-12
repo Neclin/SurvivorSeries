@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: SO_Weapon_Sword
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Sword
+  Description: Sweeps a 90 degree melee arc in front of the player. High damage,
+    short range.
   Icon: {fileID: 0}
   Type: 1
-  WeaponPrefab: {fileID: 7527066244339771224, guid: 632887e574d4acd4289814c328ffaafc, type: 3}
+  WeaponPrefab: {fileID: 9063449897787476772, guid: 632887e574d4acd4289814c328ffaafc, type: 3}
   ProjectilePrefab: {fileID: 0}
   DisplayPrefab: {fileID: 2352069078668898941, guid: 1296d401a48425745ac982d4eeeba63e, type: 3}
   BaseDamagePerLevel:
@@ -49,4 +51,4 @@ MonoBehaviour:
   MaxLevel: 8
   EvolutionRequirement: {fileID: 0}
   EvolvedForm: {fileID: 0}
-  ShopPurchaseCost: 100
+  ShopPurchaseCost: 60

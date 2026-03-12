@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_Enemy_Bomber
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Bomber
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 4112931752963673679, guid: 727c64436a9ea7849a874c28ba2fc3d4, type: 3}
   BaseHealth: 12
   BaseDamage: 18
   MoveSpeed: 3.2

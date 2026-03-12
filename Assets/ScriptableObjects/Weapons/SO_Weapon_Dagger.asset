@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_Weapon_Dagger
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Dagger
+  Description: Throws fast piercing daggers that hit multiple enemies in a line.
   Icon: {fileID: 0}
   Type: 3
-  WeaponPrefab: {fileID: 7578238515252575750, guid: 64be1e159c0a8114387c10bdff07dfe3, type: 3}
+  WeaponPrefab: {fileID: 5345062589228329143, guid: 64be1e159c0a8114387c10bdff07dfe3, type: 3}
   ProjectilePrefab: {fileID: 8332070323325552537, guid: 635c69c7a06ecf74195507be158c40e0, type: 3}
   DisplayPrefab: {fileID: 1738956667211786335, guid: aa32ac5f73154374d8088747d3ae0b63, type: 3}
   BaseDamagePerLevel:
@@ -49,4 +50,4 @@ MonoBehaviour:
   MaxLevel: 8
   EvolutionRequirement: {fileID: 0}
   EvolvedForm: {fileID: 0}
-  ShopPurchaseCost: 100
+  ShopPurchaseCost: 60

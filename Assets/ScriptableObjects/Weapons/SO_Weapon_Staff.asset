@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SO_Weapon_Staff
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Staff
+  Description: Strikes nearby enemies with a chain of lightning.
   Icon: {fileID: 0}
   Type: 2
-  WeaponPrefab: {fileID: 5702935023708299872, guid: 0e6f6cd9b790d9045a5d34fea668cf21, type: 3}
+  WeaponPrefab: {fileID: 7229226566625779923, guid: 0e6f6cd9b790d9045a5d34fea668cf21, type: 3}
   ProjectilePrefab: {fileID: 0}
   DisplayPrefab: {fileID: 8974031515322159104, guid: 8d601892e5a297844a28cd57d587d974, type: 3}
   BaseDamagePerLevel:
@@ -49,4 +50,4 @@ MonoBehaviour:
   MaxLevel: 8
   EvolutionRequirement: {fileID: 0}
   EvolvedForm: {fileID: 0}
-  ShopPurchaseCost: 100
+  ShopPurchaseCost: 60

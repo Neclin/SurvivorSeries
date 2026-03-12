@@ -25,7 +25,8 @@ namespace SurvivorSeries.Weapons.Implementations
                 float angle = startAngle + spreadAngle * i;
                 Vector3 dir = Quaternion.Euler(0f, angle, 0f) * baseDir;
                 Projectile proj = _projectilePool.Get();
-                proj.Initialize(origin, dir, GetDamage(), projSpeed, 4f, _projectilePool, pierce: true);
+                proj.Initialize(origin, dir, GetDamage(), projSpeed, 4f, _projectilePool,
+                                pierce: true, area: GetArea());
             }
         }
     }
