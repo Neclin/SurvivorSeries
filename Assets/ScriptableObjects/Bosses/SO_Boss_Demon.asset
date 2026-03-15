@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada3a879ff6426242b3766016617f908, type: 3}
+  m_Name: SO_Boss_Demon
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
+  EnemyName: Demon (Boss)
+  Prefab: {fileID: 8876723997147944954, guid: 6c00ef1d53783024db7c2aeff9672bdf, type: 3}
+  BaseHealth: 700
+  BaseDamage: 18
+  MoveSpeed: 2
+  ContactDamageInterval: 0.5
+  XPDropAmount: 0
+  CurrencyDropAmount: 0
+  CurrencyDropChance: 0

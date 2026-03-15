@@ -98,8 +98,15 @@ namespace SurvivorSeries.Waves
                 return;
             }
 
-            if (!IsFinalWave && ServiceLocator.TryGet<UI.Shop.ShopUI>(out var shopUi))
+            if (IsFinalWave)
+            {
+                if (ServiceLocator.TryGet<Enemies.BossSpawner>(out var bs))
+                    bs.SpawnBoss();
+            }
+            else if (ServiceLocator.TryGet<UI.Shop.ShopUI>(out var shopUi))
+            {
                 shopUi.Show();
+            }
         }
 
         private void ClearField()
