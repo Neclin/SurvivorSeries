@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Waves.Data.WaveConfigSO
   TotalWaves: 10
   BaseWaveDuration: 15
-  BaseEnemyCount: 30
+  BaseEnemyCount: 60
   EnemyWeights:
   - EnemyData: {fileID: 11400000, guid: b111d17851c67444ca79960616680a9c, type: 2}
     Weight: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914b716739b00e449accbe4129106d06, type: 3}
+  m_Name: SO_Achievement_BossSlayer
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Achievements.Data.AchievementDefinitionSO
+  AchievementID: boss_slayer
+  Title: Boss Slayer
+  Description: Defeat the boss for the first time.
+  ConditionType: 3
+  TargetValue: 1
+  RequiredCharacter: {fileID: 0}
+  UnlocksCharacter: {fileID: 0}

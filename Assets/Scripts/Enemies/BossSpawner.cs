@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SurvivorSeries.Enemies.Data;
+using SurvivorSeries.Audio;
 using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Enemies
@@ -40,6 +41,8 @@ namespace SurvivorSeries.Enemies
             pos.y = 0f;
 
             var boss = pool.Get(data, pos, _hpMultiplier, _dmgMultiplier);
+            AudioManager.Play(SfxId.BossSpawn);
+            AudioManager.Music(MusicMood.Boss);
             Debug.Log($"[BossSpawner] Spawned boss '{data.EnemyName}' at {pos}.");
             return boss;
         }

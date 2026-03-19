@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SurvivorSeries.LevelUp;
+using SurvivorSeries.Audio;
 using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.UI.LevelUp
@@ -48,6 +49,7 @@ namespace SurvivorSeries.UI.LevelUp
         {
             if (_panel != null) _panel.SetActive(true);
             if (_titleText != null) _titleText.text = "LEVEL UP!";
+            AudioManager.Play(SfxId.LevelUp);
 
             for (int i = 0; i < _cards.Length; i++)
             {

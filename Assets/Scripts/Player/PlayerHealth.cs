@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using SurvivorSeries.Audio;
 using SurvivorSeries.Utilities;
 
 namespace SurvivorSeries.Player
@@ -84,6 +85,7 @@ namespace SurvivorSeries.Player
             _currentHealth = Mathf.Max(0f, _currentHealth - mitigated);
             _invincibilityTimer = InvincibilityDuration;
             _flash?.Flash();
+            AudioManager.Play(SfxId.PlayerHurt);
             OnHealthChanged?.Invoke(_currentHealth, MaxHealth);
 
             if (_currentHealth <= 0f)

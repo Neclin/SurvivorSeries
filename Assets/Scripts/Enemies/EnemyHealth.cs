@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using SurvivorSeries.Audio;
 
 namespace SurvivorSeries.Enemies
 {
@@ -16,6 +17,7 @@ namespace SurvivorSeries.Enemies
 
         public event Action OnDeath;
         public event Action<float> OnDamageTaken;
+        public static event Action<EnemyHealth> OnAnyKilled;
 
         private Utilities.HitFlash _flash;
 
@@ -37,9 +39,14 @@ namespace SurvivorSeries.Enemies
             _currentHealth = Mathf.Max(0f, _currentHealth - amount);
             _flash?.Flash();
             OnDamageTaken?.Invoke(amount);
+            AudioManager.Play(SfxId.EnemyHit);
 
             if (_currentHealth <= 0f)
+            {
+                AudioManager.Play(SfxId.EnemyDeath);
                 OnDeath?.Invoke();
+                OnAnyKilled?.Invoke(this);
+            }
         }
     }
 }

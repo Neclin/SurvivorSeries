@@ -19,8 +19,8 @@ namespace SurvivorSeries.Weapons
         public int TotalSlots { get; set; } = 6;
 
         private CancellationTokenSource _cts;
-        private const float OrbitRadius = 1.4f;
-        private const float OrbitHeight = 0.45f;
+        protected const float OrbitRadius = 1.4f;
+        protected const float OrbitHeight = 0.45f;
         private const float DisplayTurnSpeed = 540f;
 
         public Data.WeaponDataSO Data => _data;

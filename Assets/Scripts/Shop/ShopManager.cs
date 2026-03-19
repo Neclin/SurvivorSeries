@@ -43,6 +43,7 @@ namespace SurvivorSeries.Shop
             if (!currency.SpendCurrency(item.Cost)) return false;
 
             item.OnPurchase?.Invoke();
+            Audio.AudioManager.Play(Audio.SfxId.Purchase);
 
             _inventory.RemoveAt(index);
             var replacement = GenerateOne();

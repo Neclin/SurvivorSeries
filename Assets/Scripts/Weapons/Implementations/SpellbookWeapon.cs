@@ -1,4 +1,5 @@
 using UnityEngine;
+using SurvivorSeries.Audio;
 
 namespace SurvivorSeries.Weapons.Implementations
 {
@@ -13,6 +14,7 @@ namespace SurvivorSeries.Weapons.Implementations
             if (_projectilePool == null) return;
             Transform target = FindNearestEnemy();
             if (target == null) return;
+            AudioManager.Play(SfxId.ProjectileShoot);
 
             Vector3 origin = GetPlayerPosition() + Vector3.up * 0.8f;
             Vector3 baseDir = target.position - origin;

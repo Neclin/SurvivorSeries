@@ -11,6 +11,7 @@ namespace SurvivorSeries.Player
         public int Currency => _currency;
 
         public event Action<int> OnCurrencyChanged;
+        public event Action<int> OnCurrencyAdded;
 
         private void Awake() => ServiceLocator.Register<PlayerCurrencyHandler>(this);
         private void OnDestroy() => ServiceLocator.Unregister<PlayerCurrencyHandler>();
@@ -18,6 +19,7 @@ namespace SurvivorSeries.Player
         public void AddCurrency(int amount)
         {
             _currency += amount;
+            OnCurrencyAdded?.Invoke(amount);
             OnCurrencyChanged?.Invoke(_currency);
         }
 

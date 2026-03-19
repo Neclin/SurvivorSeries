@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73151bb0af5a8e6469ba1cf955b9ebf9, type: 3}
+  m_Name: SO_CharacterRoster
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Characters.CharacterRoster
+  AllCharacters:
+  - {fileID: 11400000, guid: 923b3b40f32636444a0e988ae31cddbb, type: 2}
+  - {fileID: 11400000, guid: b005d4fc19321d647acdcf28ae63f11a, type: 2}
+  - {fileID: 11400000, guid: ecf4929b3327f264588df774147ebb5d, type: 2}

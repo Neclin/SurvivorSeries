@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3828af5664325c74da96fa3d56fa51c9, type: 3}
+  m_Name: SO_Character_Warrior
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Characters.Data.CharacterDefinitionSO
+  CharacterName: Warrior
+  Description: A frontline brute. Soaks hits and deals heavy damage.
+  Portrait: {fileID: 0}
+  Prefab: {fileID: 0}
+  BaseMaxHealth: 90
+  BaseMoveSpeed: 4.2
+  BaseDamage: 10
+  BaseArea: 1
+  BaseCooldownReduction: 0
+  BaseLuck: 1
+  HealthGrowth: 1.25
+  MoveSpeedGrowth: 0.85
+  DamageGrowth: 1.15
+  AreaGrowth: 1
+  ProjectileSpeedGrowth: 1
+  CooldownGrowth: 1
+  LuckGrowth: 1
+  RegenGrowth: 1
+  ArmorGrowth: 1
+  StartingWeapon: {fileID: 11400000, guid: 038aa0af50c623e4fbf653780ab95964, type: 2}
+  IsUnlockedByDefault: 1
+  UnlockAchievement: {fileID: 0}

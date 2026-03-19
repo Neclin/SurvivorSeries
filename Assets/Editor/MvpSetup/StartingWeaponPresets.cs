@@ -9,6 +9,9 @@ namespace SurvivorSeriesEditor
     {
         private const string ScenePath = "Assets/Scenes/Gameplay.unity";
 
+        [MenuItem("Survivor Series/Starting Weapons/None (character's weapon only)")]
+        public static void None() => Apply(new string[0]);
+
         [MenuItem("Survivor Series/Starting Weapons/Two Bows (combine test)")]
         public static void TwoBows() => Apply(new[]
         {

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using SurvivorSeries.Utilities;
 using SurvivorSeries.Core;
+using SurvivorSeries.Audio;
 using SurvivorSeries.Shop;
 using SurvivorSeries.Player;
 using SurvivorSeries.Waves;
@@ -54,6 +55,7 @@ namespace SurvivorSeries.UI.Shop
         public void Show()
         {
             _panel.SetActive(true);
+            AudioManager.Play(SfxId.ShopOpen);
 
             if (ServiceLocator.TryGet<WaveManager>(out var wm))
                 _titleText.text = $"SHOP — After Wave {wm.CurrentWave}";
@@ -130,6 +132,7 @@ namespace SurvivorSeries.UI.Shop
 
         private void OnContinue()
         {
+            AudioManager.Play(SfxId.ShopClose);
             Hide();
             if (ServiceLocator.TryGet<GameManager>(out var gm))
             {
