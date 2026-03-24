@@ -15,5 +15,6 @@ namespace SurvivorSeries.Persistence
         public float TotalPlaytimeSeconds;
         public string LastSelectedCharacterID;
         public string LastSelectedDifficultyName;
+        public string LastSelectedStageID;
     }
 }
