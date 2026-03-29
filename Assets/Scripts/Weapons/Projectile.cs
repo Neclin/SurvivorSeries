@@ -66,8 +66,17 @@ namespace SurvivorSeries.Weapons
                 _rb.rotation = Quaternion.LookRotation(velocity);
         }
 
+        private static int _obstacleLayer = -1;
+
         private void OnTriggerEnter(Collider other)
         {
+            if (_obstacleLayer < 0) _obstacleLayer = LayerMask.NameToLayer("Obstacle");
+            if (other.gameObject.layer == _obstacleLayer)
+            {
+                ReturnToPool();
+                return;
+            }
+
             var enemyHealth = other.GetComponentInParent<Enemies.EnemyHealth>();
             if (enemyHealth == null) return;
 

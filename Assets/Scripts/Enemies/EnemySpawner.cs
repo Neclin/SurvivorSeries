@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.AI;
 using SurvivorSeries.Enemies.Data;
 using SurvivorSeries.Utilities;
 
@@ -58,11 +59,19 @@ namespace SurvivorSeries.Enemies
         {
             if (_playerTransform == null || _enemyPool == null) return;
 
-            Vector3 spawnPos = _playerTransform.position
-                             + Extensions.RandomPointOnCircle(_spawnRadius);
-            spawnPos.y = 0f;
+            const int MaxAttempts = 6;
+            for (int i = 0; i < MaxAttempts; i++)
+            {
+                Vector3 candidate = _playerTransform.position
+                                 + Extensions.RandomPointOnCircle(_spawnRadius);
+                candidate.y = 0f;
 
-            _enemyPool.Get(data, spawnPos, hpMult, dmgMult);
+                if (NavMesh.SamplePosition(candidate, out var hit, 3f, NavMesh.AllAreas))
+                {
+                    _enemyPool.Get(data, hit.position, hpMult, dmgMult);
+                    return;
+                }
+            }
         }
     }
 }
