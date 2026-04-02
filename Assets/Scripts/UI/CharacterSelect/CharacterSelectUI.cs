@@ -9,6 +9,7 @@ using SurvivorSeries.Waves.Data;
 using SurvivorSeries.Player;
 using SurvivorSeries.Weapons;
 using SurvivorSeries.Persistence;
+using SurvivorSeries.Stages;
 using SurvivorSeries.Audio;
 using SurvivorSeries.Utilities;
 
@@ -125,6 +126,11 @@ namespace SurvivorSeries.UI.CharacterSelect
 
         private void OnStart()
         {
+            _ = StartRunAsync();
+        }
+
+        private async Awaitable StartRunAsync()
+        {
             if (_selectedCharacter == null || _selectedDifficulty == null) return;
 
             AudioManager.Music(MusicMood.Gameplay);
@@ -134,6 +140,9 @@ namespace SurvivorSeries.UI.CharacterSelect
 
             if (ServiceLocator.TryGet<RunStats>(out var runStats))
                 runStats.StartRun(_selectedCharacter.CharacterName, _selectedDifficulty.DifficultyName);
+
+            if (ServiceLocator.TryGet<StageManager>(out var sm) && sm.PendingStage != null)
+                await sm.LoadStage(sm.PendingStage);
 
             if (ServiceLocator.TryGet<WaveManager>(out var wm))
             {
@@ -158,6 +167,11 @@ namespace SurvivorSeries.UI.CharacterSelect
         private void OnBack()
         {
             Hide();
+            if (ServiceLocator.TryGet<StageSelect.StageSelectUI>(out var ss))
+            {
+                ss.Show();
+                return;
+            }
             if (ServiceLocator.TryGet<UI.MainMenu.MainMenuUI>(out var menu))
                 menu.Show();
         }

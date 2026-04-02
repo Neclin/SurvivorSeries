@@ -87,6 +87,11 @@ namespace SurvivorSeries.UI.Pause
                 var p = cs.transform.Find("Panel");
                 if (p != null && p.gameObject.activeSelf) return true;
             }
+            if (ServiceLocator.TryGet<UI.StageSelect.StageSelectUI>(out var ss))
+            {
+                var p = ss.transform.Find("Panel");
+                if (p != null && p.gameObject.activeSelf) return true;
+            }
             return false;
         }
     }

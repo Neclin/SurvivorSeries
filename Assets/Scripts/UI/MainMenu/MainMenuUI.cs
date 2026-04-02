@@ -45,6 +45,11 @@ namespace SurvivorSeries.UI.MainMenu
         private void OnPlay()
         {
             Hide();
+            if (ServiceLocator.TryGet<StageSelect.StageSelectUI>(out var ss))
+            {
+                ss.Show();
+                return;
+            }
             if (ServiceLocator.TryGet<CharacterSelect.CharacterSelectUI>(out var cs))
             {
                 cs.Show();
