@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c912cb700f328439bd8f0852ca4958, type: 3}
+  m_Name: SO_Stage_Wasteland
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Stages.Data.StageDefinitionSO
+  StageID: wasteland
+  DisplayName: Wasteland
+  Description: Sun-bleached rocks and dead trees stretch to the horizon.
+  GroundMaterial: {fileID: 2100000, guid: 652bf1a59e37b664b8b544c20f807f07, type: 2}
+  PreviewTint: {r: 0.85, g: 0.7, b: 0.4, a: 1}
+  ObstaclePrefabs:
+  - {fileID: 1938410252629853063, guid: 60e6436906d91f24297f45607ba31d25, type: 3}
+  - {fileID: 175356355983379473, guid: 5a4fa48c99ef6564a94a2d0e8b8bea05, type: 3}
+  - {fileID: 2574734724507064363, guid: c7f014780cb62cd45a8742067f6c8113, type: 3}
+  - {fileID: 5515633845290219368, guid: a5495e8047c02524ca7d55ea2fbf653a, type: 3}
+  - {fileID: 4896572859561512902, guid: 6d0de03f86dbc024cbbcafaa4bc463ff, type: 3}
+  - {fileID: 5450322035266915605, guid: ac079bfa22e5b134f9dae50ac004cbc0, type: 3}
+  - {fileID: 1262653202605093728, guid: ce65c395ff01b9341b10b1850ad6cd81, type: 3}
+  - {fileID: 1335823490737434312, guid: e255583be4345004591f40a57d949db2, type: 3}
+  - {fileID: 8718899799604763883, guid: 5bd78853f88fc1144a2b2f22d4a36a80, type: 3}
+  - {fileID: 2707653035529245888, guid: bed636e21c6895041b4966e9a7e742d7, type: 3}
+  - {fileID: 761899006846155115, guid: b7546e9564e90ce4a99bc3d55574fc51, type: 3}
+  - {fileID: 605269788561435853, guid: 31d48a2ee2e67214baf8471f9f594403, type: 3}
+  - {fileID: 119892134576942403, guid: 3b849269222a7e141a8da7c426c77271, type: 3}
+  - {fileID: 6379100261514098681, guid: 1d0edbed5a36f5445b93aa2ff649cbb4, type: 3}
+  - {fileID: 1018865214069034564, guid: 26fbcc087773e944f8d2f4d618305caf, type: 3}
+  - {fileID: 2556874799968693085, guid: 1f0a01968ca8c7246833f9e7ac348764, type: 3}
+  - {fileID: 35032286278493666, guid: b5b16fc1822f00e4ea754898742babe3, type: 3}
+  - {fileID: 8219632997535456313, guid: 76915a073d173244aaef66a522ff0d60, type: 3}
+  - {fileID: 2684043801044410158, guid: d84fd7c2e6543ef4a9a0909dd713825e, type: 3}
+  - {fileID: 7690827038873755561, guid: 9d4f7d059d00a944eb10d4b7af141d85, type: 3}
+  - {fileID: 3390271675737836791, guid: 2049a01d35ab8424e87ab047ba49e2b7, type: 3}
+  Density: 0.3
+  MinPlayerClearRadius: 5
+  UnlockAchievementID: 

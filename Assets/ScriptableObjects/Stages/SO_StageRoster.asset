@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e4fc419ddd3084c8419eafede0e324, type: 3}
+  m_Name: SO_StageRoster
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Stages.Data.StageRoster
+  AllStages:
+  - {fileID: 11400000, guid: 0a8faca2a78504d419c5099e14f42835, type: 2}
+  - {fileID: 11400000, guid: 7aaa3a552b539024eb9c90175993d9d3, type: 2}
+  - {fileID: 11400000, guid: e318c845146fd13408c6f3a217344512, type: 2}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c912cb700f328439bd8f0852ca4958, type: 3}
+  m_Name: SO_Stage_Crypt
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Stages.Data.StageDefinitionSO
+  StageID: crypt
+  DisplayName: Crypt
+  Description: Mossy ruins under a leaden sky. The dead remember everything.
+  GroundMaterial: {fileID: 2100000, guid: 19517b8a026da3d4f986575fc5873a4f, type: 2}
+  PreviewTint: {r: 0.55, g: 0.55, b: 0.6, a: 1}
+  ObstaclePrefabs:
+  - {fileID: 366920790718935555, guid: 158a23103c8ddcd46a9cfcc90bf84abf, type: 3}
+  - {fileID: 8238170817587175895, guid: fcb51074e40bd844982089fb5cf20009, type: 3}
+  - {fileID: 2159779257301393703, guid: f3d06c6fd54291745b3c5009c3c56564, type: 3}
+  - {fileID: 6113998634406948275, guid: cbb06c391866612428e3c5b95d6396a7, type: 3}
+  - {fileID: 2931657760763186696, guid: e22641d5b64cefc4ca7a1a01b0f7a8cc, type: 3}
+  - {fileID: 1204989906434583319, guid: 8a8b666fa25fce9489b388b099b97365, type: 3}
+  - {fileID: 5677905600871754701, guid: f2180daed65173a4cb33931855367db6, type: 3}
+  - {fileID: 2675318853162738841, guid: 462dd8c9d47e4b545908cc263a9ee95f, type: 3}
+  - {fileID: 5215250381544173425, guid: c27a8c5e10c197c479b62a26f56e86ad, type: 3}
+  - {fileID: 3356365134025749356, guid: 5bd486af9cddb5b4991c69cfebbb84dd, type: 3}
+  - {fileID: 3015347824200939807, guid: 11a6dfc3d78a1f842bf3d21e120e8c02, type: 3}
+  - {fileID: 6763981069850345502, guid: 336f253882bbfab45bb3083f679fec4a, type: 3}
+  Density: 0.4
+  MinPlayerClearRadius: 5
+  UnlockAchievementID: boss_slayer

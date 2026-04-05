@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c912cb700f328439bd8f0852ca4958, type: 3}
+  m_Name: SO_Stage_Tundra
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Stages.Data.StageDefinitionSO
+  StageID: tundra
+  DisplayName: Frozen Tundra
+  Description: An endless ice plain. Frost bites and silence presses in.
+  GroundMaterial: {fileID: 2100000, guid: b361947fe08faf04f974d9a7f183b966, type: 2}
+  PreviewTint: {r: 0.75, g: 0.9, b: 1, a: 1}
+  ObstaclePrefabs:
+  - {fileID: 3972215269631578070, guid: bbf47d881ca883744bc6cab662cf70f6, type: 3}
+  - {fileID: 4526646737837917657, guid: 032895b70f855d04093657c466857261, type: 3}
+  - {fileID: 5446013181088367401, guid: 5cc714b91e84cd44db262db7ba72722c, type: 3}
+  - {fileID: 6699044243755559488, guid: 197942a7c90c94e42b1d42f4221618e9, type: 3}
+  - {fileID: 6542470196803007330, guid: 75f9cfaec4026f94787451ad404b64b0, type: 3}
+  - {fileID: 233145482217983117, guid: 1c15c5a376411c44bbac51b52ff91110, type: 3}
+  - {fileID: 3429609123241766564, guid: d9faaf47cb3ee2f49a6effc77368e611, type: 3}
+  - {fileID: 5176768428698915857, guid: 0ba297b4a8cdb394e9f37326de88da38, type: 3}
+  - {fileID: 2412765771470974780, guid: 6e6ce87bf6c66b54b8a789ce8283fc4f, type: 3}
+  - {fileID: 392420012382013738, guid: b19bc63525b59d146bdb8b292b06b775, type: 3}
+  - {fileID: 1084554003305816042, guid: f4c74618cb352da49b8f8e191e3b130c, type: 3}
+  - {fileID: 8270396668643837634, guid: e02b495a12fc2dd45b29a2ecbc5df7a1, type: 3}
+  - {fileID: 498238920683164479, guid: 87c4e9ee43861a440ad04704a969a397, type: 3}
+  Density: 0.35
+  MinPlayerClearRadius: 5
+  UnlockAchievementID: survivor_10min
