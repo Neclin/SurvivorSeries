@@ -150,7 +150,12 @@ namespace SurvivorSeriesEditor
 
                 bounds = ComputeRendererBounds(instance);
                 Vector3 localCenter = instance.transform.InverseTransformPoint(bounds.center);
-                Vector3 localSize = bounds.size;
+                Vector3 ls = instance.transform.localScale;
+                Vector3 localSize = new Vector3(
+                    bounds.size.x / Mathf.Max(0.0001f, Mathf.Abs(ls.x)),
+                    bounds.size.y / Mathf.Max(0.0001f, Mathf.Abs(ls.y)),
+                    bounds.size.z / Mathf.Max(0.0001f, Mathf.Abs(ls.z))
+                );
 
                 var box = instance.AddComponent<BoxCollider>();
                 box.center = localCenter;
@@ -234,6 +239,8 @@ namespace SurvivorSeriesEditor
             SetPrivateField(sm, "_roster", roster);
             SetPrivateField(sm, "_groundRenderer", groundRenderer);
             SetPrivateField(sm, "_playerSpawnPoint", spawnPoint);
+            SetPrivateField(sm, "_arenaSize", 80f);
+            SetPrivateField(sm, "_cellSize", 5f);
             EditorUtility.SetDirty(sm);
         }
 
