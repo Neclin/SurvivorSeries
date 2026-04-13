@@ -31,10 +31,12 @@ namespace SurvivorSeries.Stages
 
                     Vector2 jitter2D = Random.insideUnitCircle * (cellSize * 0.35f);
                     Vector3 pos = cellCenter + new Vector3(jitter2D.x, 0f, jitter2D.y);
-                    Quaternion rot = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-                    float scale = Random.Range(0.85f, 1.15f);
+                    Quaternion yaw = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+                    float scale = Random.Range(0.7f, 1.45f);
 
-                    var go = Object.Instantiate(prefab, pos, rot, root);
+                    var go = Object.Instantiate(prefab, root);
+                    go.transform.position = pos;
+                    go.transform.rotation = yaw * prefab.transform.rotation;
                     go.transform.localScale = prefab.transform.localScale * scale;
                     spawned++;
                 }
