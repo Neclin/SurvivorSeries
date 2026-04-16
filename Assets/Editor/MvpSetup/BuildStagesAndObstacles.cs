@@ -148,6 +148,8 @@ namespace SurvivorSeriesEditor
                 float scale = maxDim > 0.01f ? Mathf.Clamp(targetMax / maxDim, 0.5f, 3f) : 1f;
                 instance.transform.localScale *= scale;
 
+                Quaternion savedRot = instance.transform.rotation;
+                instance.transform.rotation = Quaternion.identity;
                 bounds = ComputeRendererBounds(instance);
                 Vector3 localCenter = instance.transform.InverseTransformPoint(bounds.center);
                 Vector3 ls = instance.transform.localScale;
@@ -156,6 +158,7 @@ namespace SurvivorSeriesEditor
                     bounds.size.y / Mathf.Max(0.0001f, Mathf.Abs(ls.y)),
                     bounds.size.z / Mathf.Max(0.0001f, Mathf.Abs(ls.z))
                 );
+                instance.transform.rotation = savedRot;
 
                 var box = instance.AddComponent<BoxCollider>();
                 box.center = localCenter;

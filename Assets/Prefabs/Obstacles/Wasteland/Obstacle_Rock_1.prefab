@@ -103,8 +103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.004853229, y: 0.008777499, z: 0.004667482}
-  m_Center: {x: -0.000002935878, y: 0.00018260018, z: 0.003877735}
+  m_Size: {x: 0.004853229, y: 0.0046674814, z: 0.008777499}
+  m_Center: {x: -0.000002935878, y: 0.00018260023, z: 0.0038777357}
 --- !u!208 &7721551575882207488
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -115,9 +115,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.0024266145, y: 0.0043887496, z: 0.002333741}
+  m_Extents: {x: 0.0024266145, y: 0.0023337407, z: 0.0043887496}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.000002935878, y: 0.00018260018, z: 0.003877735}
+  m_Center: {x: -0.000002935878, y: 0.00018260023, z: 0.0038777357}
   m_TimeToStationary: 0.5
