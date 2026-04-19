@@ -38,6 +38,15 @@ namespace SurvivorSeries.Stages
                     go.transform.position = pos;
                     go.transform.rotation = yaw * prefab.transform.rotation;
                     go.transform.localScale = prefab.transform.localScale * scale;
+
+                    var rends = go.GetComponentsInChildren<Renderer>();
+                    if (rends.Length > 0)
+                    {
+                        Bounds b = rends[0].bounds;
+                        for (int i = 1; i < rends.Length; i++) b.Encapsulate(rends[i].bounds);
+                        float lift = origin.y - b.min.y;
+                        go.transform.position += new Vector3(0f, lift, 0f);
+                    }
                     spawned++;
                 }
             }
