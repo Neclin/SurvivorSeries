@@ -9,9 +9,9 @@ namespace SurvivorSeries.Stages
         [SerializeField] private StageRoster _roster;
         [SerializeField] private Renderer _groundRenderer;
         [SerializeField] private Transform _playerSpawnPoint;
-        [SerializeField] private float _arenaSize = 80f;
+        [SerializeField] private float _arenaSize = 90f;
         [SerializeField] private float _cellSize = 5f;
-        [SerializeField] private float _arenaBoundSize = 90f;
+        [SerializeField] private float _arenaBoundSize = 100f;
         [SerializeField] private float _wallHeight = 10f;
 
         public StageRoster Roster => _roster;

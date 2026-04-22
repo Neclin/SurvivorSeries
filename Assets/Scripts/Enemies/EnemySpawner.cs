@@ -55,16 +55,33 @@ namespace SurvivorSeries.Enemies
             }
         }
 
+        private static int _obstacleMask = -1;
+        private static int ObstacleMask
+        {
+            get
+            {
+                if (_obstacleMask < 0)
+                {
+                    int layer = LayerMask.NameToLayer("Obstacle");
+                    _obstacleMask = layer >= 0 ? 1 << layer : 0;
+                }
+                return _obstacleMask;
+            }
+        }
+
         private void SpawnOne(EnemyDataSO data, float hpMult, float dmgMult)
         {
             if (_playerTransform == null || _enemyPool == null) return;
 
-            const int MaxAttempts = 6;
+            const int MaxAttempts = 12;
+            int mask = ObstacleMask;
             for (int i = 0; i < MaxAttempts; i++)
             {
                 Vector3 candidate = _playerTransform.position
                                  + Extensions.RandomPointOnCircle(_spawnRadius);
                 candidate.y = 0f;
+
+                if (mask != 0 && Physics.CheckSphere(candidate, 1.5f, mask)) continue;
 
                 if (NavMesh.SamplePosition(candidate, out var hit, 3f, NavMesh.AllAreas))
                 {

@@ -242,8 +242,10 @@ namespace SurvivorSeriesEditor
             SetPrivateField(sm, "_roster", roster);
             SetPrivateField(sm, "_groundRenderer", groundRenderer);
             SetPrivateField(sm, "_playerSpawnPoint", spawnPoint);
-            SetPrivateField(sm, "_arenaSize", 80f);
+            SetPrivateField(sm, "_arenaSize", 90f);
             SetPrivateField(sm, "_cellSize", 5f);
+            SetPrivateField(sm, "_arenaBoundSize", 100f);
+            SetPrivateField(sm, "_wallHeight", 10f);
             EditorUtility.SetDirty(sm);
         }
 
