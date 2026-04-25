@@ -13,7 +13,8 @@ namespace SurvivorSeries.Audio
         UIClick,
         ShopOpen,
         ShopClose,
-        Purchase
+        Purchase,
+        LightningStrike
     }
 
     public enum MusicMood

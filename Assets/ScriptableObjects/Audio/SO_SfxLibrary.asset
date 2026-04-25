@@ -116,3 +116,10 @@ MonoBehaviour:
     Volume: 0.55
     PitchVariance: 0.08
     MinInterval: 0.05
+  - Id: 12
+    Clips:
+    - {fileID: 8300000, guid: 3817a89566d67d344ac4bbc24e984cdc, type: 3}
+    - {fileID: 8300000, guid: 0ae24071481352342a8daee13f64f222, type: 3}
+    Volume: 0.4
+    PitchVariance: 0.08
+    MinInterval: 0.1

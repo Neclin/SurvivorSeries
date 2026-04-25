@@ -1,9 +1,14 @@
 using UnityEngine;
+using SurvivorSeries.Audio;
 
 namespace SurvivorSeries.Weapons.Implementations
 {
     public class StaffWeapon : WeaponBase
     {
+        private static readonly Color BoltColor = new(1f, 0.95f, 0.30f, 1f);
+        private const float BoltWidth = 0.12f;
+        private const float BoltDuration = 0.22f;
+
         protected override void Fire()
         {
             int count = GetProjectileCount();
@@ -23,9 +28,19 @@ namespace SurvivorSeries.Weapons.Implementations
             for (int i = 0; i < strikes; i++)
             {
                 enemies[i].TakeDamage(damage);
-                Debug.DrawLine(origin, enemies[i].transform.position + Vector3.up * 0.5f,
-                               new Color(1f, 0.95f, 0.2f, 1f), 0.3f);
+                SpawnBolt(origin, enemies[i].transform.position + Vector3.up * 0.5f);
             }
+
+            AudioManager.Play(SfxId.LightningStrike);
+        }
+
+        private void SpawnBolt(Vector3 from, Vector3 to)
+        {
+            var go = new GameObject("StaffBolt");
+            var line = go.AddComponent<LineRenderer>();
+            line.numCapVertices = 2;
+            var bolt = go.AddComponent<LightningBolt>();
+            bolt.Initialize(from, to, BoltColor, BoltWidth, BoltDuration);
         }
     }
 }

@@ -66,6 +66,7 @@ namespace SurvivorSeriesEditor
                 BuildEntry(SfxId.ShopOpen,        0.70f, 0.20f, "doorOpen"),
                 BuildEntry(SfxId.ShopClose,       0.70f, 0.20f, "doorClose"),
                 BuildEntry(SfxId.Purchase,        0.55f, 0.05f, "coin"),
+                BuildEntry(SfxId.LightningStrike, 0.40f, 0.10f, "magic1", "spell"),
             };
             SetPrivateField(library, "_entries", entries.ToArray());
             library.InvalidateCache();
