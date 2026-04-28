@@ -27,6 +27,12 @@ namespace SurvivorSeries.Enemies
 
         public void SetTarget(Transform target) => _target = target;
 
+        public void Warp(Vector3 position)
+        {
+            if (_agent != null) _agent.Warp(position);
+            else transform.position = position;
+        }
+
         public void Pause()
         {
             _agent.isStopped = true;

@@ -33,7 +33,9 @@ namespace SurvivorSeries.Enemies
             var pool = EnsurePool(prefab);
             var enemy = pool.Get();
             enemy.OriginPrefab = prefab;
-            enemy.transform.position = position;
+            var movement = enemy.GetComponent<EnemyMovement>();
+            if (movement != null) movement.Warp(position);
+            else enemy.transform.position = position;
             enemy.Initialize(data, _playerTransform, hpMultiplier, dmgMultiplier, this);
             return enemy;
         }

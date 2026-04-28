@@ -118,8 +118,11 @@ MonoBehaviour:
     MinInterval: 0.05
   - Id: 12
     Clips:
-    - {fileID: 8300000, guid: 3817a89566d67d344ac4bbc24e984cdc, type: 3}
-    - {fileID: 8300000, guid: 0ae24071481352342a8daee13f64f222, type: 3}
-    Volume: 0.4
+    - {fileID: 8300000, guid: abfc21b0d9f45a8448f612b7858f98d2, type: 3}
+    - {fileID: 8300000, guid: 6dd0f045f9bba17499173167c5473633, type: 3}
+    - {fileID: 8300000, guid: 43e5d398aa319a44ab60f86149a53253, type: 3}
+    - {fileID: 8300000, guid: 7a497d79db8aabe41856b20e82e505df, type: 3}
+    - {fileID: 8300000, guid: fd09aa4c2ca06c9419ce3b4da53e2d5d, type: 3}
+    Volume: 0.35
     PitchVariance: 0.08
     MinInterval: 0.1
