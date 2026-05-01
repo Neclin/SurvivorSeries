@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Yeti (Boss)
   Prefab: {fileID: 3014702391140562459, guid: a5a64d4412f718447a9a3b06bc805d65, type: 3}
-  BaseHealth: 800
-  BaseDamage: 20
-  MoveSpeed: 1.6
+  BaseHealth: 3000
+  BaseDamage: 30
+  MoveSpeed: 2.4
   ContactDamageInterval: 0.5
   XPDropAmount: 0
   CurrencyDropAmount: 0

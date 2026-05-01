@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: MushroomKing (Boss)
   Prefab: {fileID: 8538578912783187992, guid: 839b6de5170cdee47aea83985e659728, type: 3}
-  BaseHealth: 600
-  BaseDamage: 16
-  MoveSpeed: 1.8
+  BaseHealth: 2400
+  BaseDamage: 24
+  MoveSpeed: 2.6
   ContactDamageInterval: 0.5
   XPDropAmount: 0
   CurrencyDropAmount: 0

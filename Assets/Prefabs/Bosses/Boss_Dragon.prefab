@@ -131,6 +131,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0309d133435c24ba51c99888905467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Variants.BossEnemy
+  _projectilePrefab: {fileID: 1020289839478674331, guid: 50cff19fc458f6547a5070ab878af514, type: 3}
+  _projectileSpeed: 11
+  _projectileDamage: 14
+  _rangedCooldown: 3.5
+  _projectilesPerVolley: 5
+  _projectileSpreadDeg: 28
+  _aoeCooldown: 8
+  _aoeRadius: 5.5
+  _aoeDamage: 35
+  _aoeChargeTime: 1.25
 --- !u!1001 &6426940561253858536
 PrefabInstance:
   m_ObjectHideFlags: 0

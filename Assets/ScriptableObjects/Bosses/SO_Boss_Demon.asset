@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Demon (Boss)
   Prefab: {fileID: 8876723997147944954, guid: 6c00ef1d53783024db7c2aeff9672bdf, type: 3}
-  BaseHealth: 700
-  BaseDamage: 18
-  MoveSpeed: 2
+  BaseHealth: 2800
+  BaseDamage: 28
+  MoveSpeed: 2.8
   ContactDamageInterval: 0.5
   XPDropAmount: 0
   CurrencyDropAmount: 0

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Enemies.Data.EnemyDataSO
   EnemyName: Orc (Boss)
   Prefab: {fileID: 4385630835004038205, guid: c6d5dbc57d51f734791bbec3291a4ec5, type: 3}
-  BaseHealth: 650
-  BaseDamage: 17
-  MoveSpeed: 1.9
+  BaseHealth: 2600
+  BaseDamage: 26
+  MoveSpeed: 2.7
   ContactDamageInterval: 0.5
   XPDropAmount: 0
   CurrencyDropAmount: 0
