@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Wasteland
   Description: Sun-bleached rocks and dead trees stretch to the horizon.
   GroundMaterial: {fileID: 2100000, guid: 652bf1a59e37b664b8b544c20f807f07, type: 2}
+  PreviewImage: {fileID: 21300000, guid: 378514a142e1141479a6b991aed7b998, type: 3}
   PreviewTint: {r: 0.85, g: 0.7, b: 0.4, a: 1}
   ObstaclePrefabs:
   - {fileID: 1938410252629853063, guid: 60e6436906d91f24297f45607ba31d25, type: 3}

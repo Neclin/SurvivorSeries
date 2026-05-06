@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Crypt
   Description: Mossy ruins under a leaden sky. The dead remember everything.
   GroundMaterial: {fileID: 2100000, guid: 19517b8a026da3d4f986575fc5873a4f, type: 2}
+  PreviewImage: {fileID: 21300000, guid: a12c02902847caf439755508cdebea30, type: 3}
   PreviewTint: {r: 0.55, g: 0.55, b: 0.6, a: 1}
   ObstaclePrefabs:
   - {fileID: 366920790718935555, guid: 158a23103c8ddcd46a9cfcc90bf84abf, type: 3}

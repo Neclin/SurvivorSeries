@@ -9,6 +9,8 @@ namespace SurvivorSeries.UI.CharacterSelect
     public class CharacterCardUI : MonoBehaviour
     {
         [SerializeField] private Image _background;
+        [SerializeField] private Image _portraitImage;
+        [SerializeField] private GameObject _portraitPlaceholder;
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private TextMeshProUGUI _statsText;
@@ -32,6 +34,17 @@ namespace SurvivorSeries.UI.CharacterSelect
             if (_nameText != null) _nameText.text = def.CharacterName;
             if (_descriptionText != null) _descriptionText.text = def.Description;
             if (_statsText != null) _statsText.text = BuildStats(def);
+
+            bool hasPortrait = def.Portrait != null;
+            if (_portraitImage != null)
+            {
+                _portraitImage.sprite = def.Portrait;
+                _portraitImage.enabled = hasPortrait;
+                _portraitImage.preserveAspect = true;
+                _portraitImage.color = hasPortrait ? Color.white : new Color(0.08f, 0.08f, 0.10f, 1f);
+            }
+            if (_portraitPlaceholder != null)
+                _portraitPlaceholder.SetActive(!hasPortrait);
 
             if (_selectButton != null)
             {

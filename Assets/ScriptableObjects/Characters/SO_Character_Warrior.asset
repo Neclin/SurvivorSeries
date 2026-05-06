@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Characters.Data.CharacterDefinitionSO
   CharacterName: Warrior
   Description: A frontline brute. Soaks hits and deals heavy damage.
-  Portrait: {fileID: 0}
-  Prefab: {fileID: 0}
+  Portrait: {fileID: 21300000, guid: e25bf4a376ff6b04cb6f447be5066143, type: 3}
+  Prefab: {fileID: 919132149155446097, guid: 0ba453840ddc85c48b9f52e2ab0175c2, type: 3}
   BaseMaxHealth: 90
   BaseMoveSpeed: 4.2
   BaseDamage: 10

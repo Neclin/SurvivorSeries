@@ -27,6 +27,7 @@ namespace SurvivorSeries.UI.CharacterSelect
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _backButton;
         [SerializeField] private TextMeshProUGUI _selectionSummary;
+        [SerializeField] private CharacterPreviewRig _previewRig;
 
         private static readonly Color SelectedColor = new(0.95f, 0.75f, 0.30f, 1f);
         private static readonly Color UnselectedColor = new(0.20f, 0.20f, 0.25f, 1f);
@@ -66,6 +67,7 @@ namespace SurvivorSeries.UI.CharacterSelect
         public void Hide()
         {
             if (_panel != null) _panel.SetActive(false);
+            if (_previewRig != null) _previewRig.Clear();
         }
 
         private void BindCharacterCards()
@@ -99,6 +101,7 @@ namespace SurvivorSeries.UI.CharacterSelect
             _selectedCharacter = def;
             foreach (var card in _characterCards)
                 if (card != null) card.SetSelected(card.Data == def);
+            if (_previewRig != null) _previewRig.Show(def);
             RefreshSummary();
         }
 

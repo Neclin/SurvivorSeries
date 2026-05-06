@@ -29,7 +29,20 @@ namespace SurvivorSeries.UI.StageSelect
             if (def == null) { gameObject.SetActive(false); return; }
             gameObject.SetActive(true);
 
-            if (_thumbnail != null) _thumbnail.color = def.PreviewTint;
+            if (_thumbnail != null)
+            {
+                if (def.PreviewImage != null)
+                {
+                    _thumbnail.sprite = def.PreviewImage;
+                    _thumbnail.color = Color.white;
+                    _thumbnail.preserveAspect = true;
+                }
+                else
+                {
+                    _thumbnail.sprite = null;
+                    _thumbnail.color = def.PreviewTint;
+                }
+            }
             if (_nameText != null) _nameText.text = def.DisplayName;
             if (_descriptionText != null) _descriptionText.text = def.Description;
 

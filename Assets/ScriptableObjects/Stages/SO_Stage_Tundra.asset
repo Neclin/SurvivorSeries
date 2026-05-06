@@ -16,6 +16,7 @@ MonoBehaviour:
   DisplayName: Frozen Tundra
   Description: An endless ice plain. Frost bites and silence presses in.
   GroundMaterial: {fileID: 2100000, guid: b361947fe08faf04f974d9a7f183b966, type: 2}
+  PreviewImage: {fileID: 21300000, guid: 91882bd35565a1841a979409563498eb, type: 3}
   PreviewTint: {r: 0.75, g: 0.9, b: 1, a: 1}
   ObstaclePrefabs:
   - {fileID: 3972215269631578070, guid: bbf47d881ca883744bc6cab662cf70f6, type: 3}

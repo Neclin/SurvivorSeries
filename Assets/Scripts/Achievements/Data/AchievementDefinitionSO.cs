@@ -17,6 +17,7 @@ namespace SurvivorSeries.Achievements.Data
         public string AchievementID;
         public string Title;
         [TextArea] public string Description;
+        public Sprite Icon;
 
         public AchievementConditionType ConditionType;
         public float TargetValue;

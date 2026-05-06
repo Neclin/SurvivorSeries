@@ -12,6 +12,7 @@ namespace SurvivorSeries.Stages.Data
 
         [Header("Visuals")]
         public Material GroundMaterial;
+        public Sprite PreviewImage;
         public Color PreviewTint = Color.white;
 
         [Header("Obstacles")]

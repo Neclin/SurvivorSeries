@@ -12,6 +12,7 @@ namespace SurvivorSeries.UI.MainMenu
         [SerializeField] private GameObject _panel;
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private Button _playButton;
+        [SerializeField] private Button _achievementsButton;
         [SerializeField] private Button _quitButton;
 
         private void Awake()
@@ -19,6 +20,7 @@ namespace SurvivorSeries.UI.MainMenu
             ServiceLocator.Register<MainMenuUI>(this);
             if (_titleText != null) _titleText.text = "SURVIVOR SERIES";
             if (_playButton != null) _playButton.onClick.AddListener(OnPlay);
+            if (_achievementsButton != null) _achievementsButton.onClick.AddListener(OnAchievements);
             if (_quitButton != null) _quitButton.onClick.AddListener(OnQuit);
         }
 
@@ -57,6 +59,13 @@ namespace SurvivorSeries.UI.MainMenu
             }
             if (ServiceLocator.TryGet<WaveManager>(out var wm) && !wm.IsWaveActive)
                 wm.StartNextWave();
+        }
+
+        private void OnAchievements()
+        {
+            if (!ServiceLocator.TryGet<UI.Achievements.AchievementsUI>(out var achievements)) return;
+            Hide();
+            achievements.Show();
         }
 
         private void OnQuit()
