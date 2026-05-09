@@ -45,6 +45,16 @@ namespace SurvivorSeries.Waves
 
         public void SetDifficulty(DifficultySettingsSO diff) => _difficulty = diff;
 
+        public void DebugEndWaveNow()
+        {
+            if (!_waveActive) return;
+            _waveTimer = 0f;
+        }
+
+        public void DebugSetCurrentWave(int wave) => _currentWave = Mathf.Max(0, wave);
+
+        public int TotalWaves => _config != null ? _config.TotalWaves : 10;
+
         public void StartNextWave()
         {
             _currentWave++;

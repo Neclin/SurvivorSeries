@@ -55,5 +55,11 @@ namespace SurvivorSeries.Persistence
         public SaveData GetData() => _data;
 
         public void SaveNow() => SaveSystem.Save(_data);
+
+        public void DebugReset()
+        {
+            SaveSystem.Delete();
+            _data = new SaveData();
+        }
     }
 }
