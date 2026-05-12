@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Axe
   Description: Hurls a spinning axe with a slow cooldown. Highest single-hit damage.
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: f59c41a57ae4fdb42a3faf8ea12465a2, type: 3}
   Type: 3
   WeaponPrefab: {fileID: 631258594252352087, guid: 4ef240555aeae2c4a8e6bf33f28643f8, type: 3}
   ProjectilePrefab: {fileID: 5988312309238879434, guid: 69dd24f149983b04ab698b83e4bdc5e2, type: 3}

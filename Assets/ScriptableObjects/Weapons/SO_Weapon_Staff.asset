@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Staff
   Description: Strikes nearby enemies with a chain of lightning.
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: a788f00b6b4efd14fb3ba54125785680, type: 3}
   Type: 2
   WeaponPrefab: {fileID: 7229226566625779923, guid: 0e6f6cd9b790d9045a5d34fea668cf21, type: 3}
   ProjectilePrefab: {fileID: 0}

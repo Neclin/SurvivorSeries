@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Spellbook
   Description: Conjures fire bolts that ignite enemies, dealing damage over time.
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 29e575ac9f74b3b41b2ab7b12f0b6c60, type: 3}
   Type: 0
   WeaponPrefab: {fileID: 6394294816970814678, guid: 41669df7caf45af4987dedd9769a123b, type: 3}
   ProjectilePrefab: {fileID: 1194485203741828708, guid: ef7310fd132fce34d8e1d2b1019a72b4, type: 3}

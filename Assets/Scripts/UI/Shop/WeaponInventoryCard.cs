@@ -13,6 +13,7 @@ namespace SurvivorSeries.UI.Shop
         [SerializeField] private Button _mergeButton;
         [SerializeField] private TextMeshProUGUI _mergeLabel;
         [SerializeField] private GameObject _emptyOverlay;
+        [SerializeField] private Image _iconImage;
 
         private WeaponBase _weapon;
 
@@ -26,7 +27,15 @@ namespace SurvivorSeries.UI.Shop
                 _nameText.text = "—";
                 _levelText.text = "";
                 _mergeButton.gameObject.SetActive(false);
+                if (_iconImage != null) { _iconImage.sprite = null; _iconImage.enabled = false; }
                 return;
+            }
+
+            if (_iconImage != null)
+            {
+                Sprite icon = weapon.Data != null ? weapon.Data.Icon : null;
+                _iconImage.sprite = icon;
+                _iconImage.enabled = icon != null;
             }
 
             _nameText.text = weapon.Data != null ? weapon.Data.WeaponName : weapon.name;

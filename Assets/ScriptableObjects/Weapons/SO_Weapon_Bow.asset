@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Weapons.Data.WeaponDataSO
   WeaponName: Bow
   Description: Fires arrows at the nearest enemy. Long range, fast cooldown.
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 550423168e4d632428cc85c37143b480, type: 3}
   Type: 0
   WeaponPrefab: {fileID: 5649325059109814442, guid: 7239051c92e9d8942a8206ce8a325f66, type: 3}
   ProjectilePrefab: {fileID: 5583321000302002673, guid: 272064b42171c5540bac3d077f4d9883, type: 3}

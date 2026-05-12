@@ -15,7 +15,7 @@ MonoBehaviour:
   WeaponName: Sword
   Description: Sweeps a 90 degree melee arc in front of the player. High damage,
     short range.
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 9b32188ef1500dd4fbae6af73721cc6d, type: 3}
   Type: 1
   WeaponPrefab: {fileID: 9063449897787476772, guid: 632887e574d4acd4289814c328ffaafc, type: 3}
   ProjectilePrefab: {fileID: 0}

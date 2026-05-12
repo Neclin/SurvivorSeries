@@ -12,6 +12,7 @@ namespace SurvivorSeries.UI.LevelUp
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private TextMeshProUGUI _typeText;
         [SerializeField] private Button _chooseButton;
+        [SerializeField] private Image _iconImage;
 
         private UpgradeOption _option;
         private Action<UpgradeOption> _onChosen;
@@ -25,6 +26,15 @@ namespace SurvivorSeries.UI.LevelUp
 
             _nameText.text = option.Name;
             _descriptionText.text = option.Description;
+
+            if (_iconImage != null)
+            {
+                Sprite icon = option.WeaponData != null ? option.WeaponData.Icon
+                            : option.PassiveData != null ? option.PassiveData.Icon
+                            : null;
+                _iconImage.sprite = icon;
+                _iconImage.enabled = icon != null;
+            }
 
             if (_typeText != null)
             {
