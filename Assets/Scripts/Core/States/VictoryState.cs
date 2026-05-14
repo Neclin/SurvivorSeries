@@ -1,4 +1,6 @@
 using UnityEngine;
+using SurvivorSeries.Utilities;
+using SurvivorSeries.UI.Victory;
 
 namespace SurvivorSeries.Core.States
 {
@@ -7,7 +9,10 @@ namespace SurvivorSeries.Core.States
         public override void Enter()
         {
             Debug.Log("[State] Victory");
-            Time.timeScale = 0f;
+            if (ServiceLocator.TryGet<VictoryUI>(out var ui))
+                ui.Show();
+            else
+                Time.timeScale = 0f;
         }
 
         public override void Tick(float deltaTime) { }

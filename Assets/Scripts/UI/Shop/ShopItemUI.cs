@@ -34,6 +34,7 @@ namespace SurvivorSeries.UI.Shop
                 Sprite icon = item.WeaponData != null ? item.WeaponData.Icon
                             : item.PassiveData != null ? item.PassiveData.Icon
                             : null;
+                if (!_iconImage.gameObject.activeSelf) _iconImage.gameObject.SetActive(true);
                 _iconImage.sprite = icon;
                 _iconImage.enabled = icon != null;
             }

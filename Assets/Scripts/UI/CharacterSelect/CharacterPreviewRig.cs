@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;
 using SurvivorSeries.Characters.Data;
 
 namespace SurvivorSeries.UI.CharacterSelect
@@ -12,9 +14,11 @@ namespace SurvivorSeries.UI.CharacterSelect
         [SerializeField] private int _previewLayer = -1;
         [SerializeField] private AnimationClip _idleClip;
         [SerializeField, Range(0f, 1f)] private float _idleSampleTime = 0f;
+        [SerializeField] private Avatar _idleAvatar;
 
         private GameObject _current;
         private CharacterDefinitionSO _currentDef;
+        private PlayableGraph _graph;
 
         public void Show(CharacterDefinitionSO def)
         {
@@ -37,10 +41,31 @@ namespace SurvivorSeries.UI.CharacterSelect
         {
             if (_idleClip == null) return;
             var animator = go.GetComponentInChildren<Animator>();
-            if (animator != null) animator.enabled = false;
+            if (animator == null) animator = go.AddComponent<Animator>();
+            if (animator.avatar == null && _idleAvatar != null) animator.avatar = _idleAvatar;
+
+            animator.applyRootMotion = false;
+            animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+            DestroyGraph();
+            AnimationPlayableUtilities.PlayClip(animator, _idleClip, out _graph);
+            var output = (AnimationPlayableOutput)_graph.GetOutput(0);
+            var clipPlayable = (AnimationClipPlayable)output.GetSourcePlayable();
+            clipPlayable.SetApplyFootIK(false);
+
             float t = Mathf.Lerp(0f, Mathf.Max(0.0001f, _idleClip.length), _idleSampleTime);
-            _idleClip.SampleAnimation(go, t);
+            clipPlayable.SetTime(t);
+            clipPlayable.SetSpeed(0d);
+            _graph.Evaluate();
         }
+
+        private void DestroyGraph()
+        {
+            if (_graph.IsValid()) _graph.Destroy();
+        }
+
+        private void OnDestroy() => DestroyGraph();
 
         public void Clear()
         {

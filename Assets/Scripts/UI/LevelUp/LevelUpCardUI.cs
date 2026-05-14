@@ -32,6 +32,7 @@ namespace SurvivorSeries.UI.LevelUp
                 Sprite icon = option.WeaponData != null ? option.WeaponData.Icon
                             : option.PassiveData != null ? option.PassiveData.Icon
                             : null;
+                if (!_iconImage.gameObject.activeSelf) _iconImage.gameObject.SetActive(true);
                 _iconImage.sprite = icon;
                 _iconImage.enabled = icon != null;
             }

@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032a70df603d31e40a42a682277f933c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorSeries.Core.BootstrapLoader
-  _firstScene: MainMenu
+  _firstScene: Gameplay
 --- !u!114 &674211614
 MonoBehaviour:
   m_ObjectHideFlags: 0
